@@ -19,7 +19,7 @@ export default function Document() {
           href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
         />
       </Head>
-      <body className="overflow-hidden">
+      <body className="overflow-hidden light">
         <Main />
         <NextScript />
       </body>
