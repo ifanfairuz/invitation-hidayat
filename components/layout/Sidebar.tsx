@@ -51,7 +51,7 @@ export const SidebarItem: FC<SidebarItemProps> = ({
       <LinkWrapper href={child ? undefined : (href as Url)} wrap={!child}>
         <a
           onClick={toggleOpen}
-          className="flex gap-3 items-center text-sm py-4 px-5 h-12 mb-2 overflow-hidden text-ellipsis whitespace-nowrap rounded-full text-gray-100 hover:text-gray-800 bg-blue-500 hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer shadow-lg"
+          className="flex gap-3 items-center text-sm py-4 px-5 h-12 mb-2 overflow-hidden text-ellipsis whitespace-nowrap rounded-full text-main-00 hover:text-gray-600 bg-main-400 hover:bg-blue-50 transition duration-300 ease-in-out cursor-pointer shadow-lg"
         >
           <span className="text-xl">{icon}</span>
           <span>{title}</span>
