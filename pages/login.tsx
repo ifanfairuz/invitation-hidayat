@@ -1,16 +1,17 @@
 import Head from "next/head";
-import Loader from "../components/Loader";
+import Loader from "@components/Loader";
 import { FormEventHandler, useState } from "react";
+export { unauthed as getServerSideProps } from "@lib/auth";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("ifanfairuz");
+  const [password, setPassword] = useState("admin");
   const [error, setError] = useState("");
 
   const submit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    if (!loading && email !== "" && password !== "") {
+    if (!loading && username !== "" && password !== "") {
       setError("");
       setLoading(true);
       fetch("/api/auth/login", {
@@ -18,7 +19,7 @@ export default function Login() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username, password }),
       })
         .then((res) =>
           [200, 401].includes(res.status)
@@ -26,9 +27,9 @@ export default function Login() {
             : Promise.reject(new Error("Gagal melakukan login"))
         )
         .then((res) => {
-          if (res.token && res.token !== "")
+          if (res.message && res.message === "OK") {
             window.location.assign("/dashboard");
-          else return Promise.reject(new Error(res.message));
+          } else return Promise.reject(new Error(res.message));
         })
         .catch((err: Error) => {
           setError(err.message || "Gagal melakukan login");
@@ -59,14 +60,14 @@ export default function Login() {
                   <path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z" />
                 </svg>
                 <input
-                  type="email"
-                  id="email"
+                  type="text"
+                  id="username"
                   className="bg-gray-200 pl-12 py-2 md:py-4 focus:outline-none w-full rounded"
-                  placeholder="Email"
-                  autoComplete="email"
-                  name="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Username"
+                  autoComplete="username"
+                  name="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   required
                 />
               </div>

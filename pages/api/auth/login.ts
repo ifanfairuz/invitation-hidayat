@@ -1,23 +1,13 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { authedHandler } from "@lib/auth";
+import passport from "@lib/_passport";
 
-type Data = {
-  token?: string;
-  expired_at?: number;
-  message: string;
-};
-
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data | string>
-) {
-  if (req.method === "POST") {
-    const { body } = req;
-    if (body.email && body.password) {
+export default authedHandler<any>().post(
+  passport.authenticate("local"),
+  (req: AuthRequest, res) => {
+    if (req.user) {
+      res.json({ message: "OK" });
+    } else {
       res.status(401).json({ message: "Email atau Password Salah." });
-      return;
     }
-    res.status(401).json({ message: "Email atau Password Salah." });
-  } else {
-    res.status(404).json("NotFound.");
   }
-}
+);
