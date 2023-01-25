@@ -110,7 +110,7 @@ export const SidebarComponent: FC<SidebarProps> = ({
       } ${hide ? "-left-72" : "left-0"}`}
       {...props}
     >
-      <div className="flex justify-center px-2 py-6 mx-4 mb-2">
+      <div className="flex justify-center px-2 pt-6 pb-4 mx-4">
         <Logo withLabel />
       </div>
       <ul className="relative px-4">

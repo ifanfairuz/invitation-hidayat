@@ -17,6 +17,9 @@ export const Logo: FC<LogoProps> = ({ withLabel, _label, ...props }) => {
         alt="Logo"
         style={{ objectFit: "fill" }}
       />
+      <p className="text-center -mt-2 text-main-500 f-type text-3xl">
+        inVitation
+      </p>
     </span>
   );
 };

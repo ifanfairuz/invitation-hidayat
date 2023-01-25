@@ -49,7 +49,7 @@ export const PageWrapper: FC<PageWrapperProps> = ({
             <div className="flex-1 min-h-screen bg-slate-100">
               {!!dashboardTitle && (
                 <div className="py-5 px-8">
-                  <p className="text-lg opacity-80 uppercase">
+                  <p className="text-xl opacity-70 uppercase">
                     {dashboardTitle}
                   </p>
                 </div>
