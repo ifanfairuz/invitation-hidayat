@@ -1,4 +1,4 @@
-import { createRef } from "react";
+import { createRef, useEffect } from "react";
 import Head from "next/head";
 import { Cover } from "@components/Cover";
 import Person from "@components/Person";
@@ -39,7 +39,7 @@ const gallery = [
 export default function Home() {
   const main = createRef<HTMLElement>();
   const onOpen = () => {
-    document.body.classList.remove("overflow-hidden");
+    document.body.classList.add("open");
     main.current?.classList.remove("closed");
   };
 
@@ -50,6 +50,14 @@ export default function Home() {
         <meta name="description" content="Keluarga Bpk.Hidayat/Ibu.Wati" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <style>
+          {`
+          body { overflow: hidden !important; }
+          body.open {
+            overflow: auto !important;
+          }
+          `}
+        </style>
       </Head>
       <main ref={main} id="main" className="closed">
         <Cover onOpen={onOpen} />
