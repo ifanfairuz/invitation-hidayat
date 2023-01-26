@@ -1,10 +1,9 @@
 import nextConnect from "next-connect";
-import { middlewareDB } from "@repo/connection";
+import { closeConnection, middlewareDB } from "@repo/connection";
 import session from "./_session";
 import passport from "./_passport";
 import { GetServerSideProps } from "next";
 import { IncomingMessage, ServerResponse } from "http";
-import { User } from "@prisma/client";
 
 export const authConnect = nextConnect()
   .use(middlewareDB)
@@ -31,29 +30,52 @@ const userSSR = (
     });
 };
 
-export const authed: GetServerSideProps = async ({ req, res }) => {
-  const user = await userSSR(req, res);
-  if (!user) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/login",
-      },
-    };
-  }
+export function withAuthedSSR<P extends Record<string, any>>(
+  cb?: WithAuthedSSRCallback<P>
+): GetServerSideProps<WithUserSSRProps<P>> {
+  return async (context) => {
+    const user = await userSSR(context.req, context.res);
+    if (!user) {
+      closeConnection();
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
+      };
+    }
 
-  return { props: { user } };
-};
-export const unauthed: GetServerSideProps = async ({ req, res }) => {
-  const user = await userSSR(req, res);
-  if (user) {
+    const res = !cb ? { props: {} as P } : await cb(user, context);
+    closeConnection();
     return {
-      redirect: {
-        permanent: false,
-        destination: "/dashboard",
-      },
+      ...res,
+      props: {
+        user,
+        ...("props" in res ? res.props : {}),
+      } as WithUserSSRProps<P>,
     };
-  }
+  };
+}
+export function withUnauthedSSR<P extends Record<string, any>>(
+  cb?: WithUnauthedSSRCallback<P>
+): GetServerSideProps<P> {
+  return async (context) => {
+    const user = await userSSR(context.req, context.res);
+    if (user) {
+      closeConnection();
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/dashboard",
+        },
+      };
+    }
 
-  return { props: {} };
-};
+    const res = !cb ? { props: {} as P } : await cb(context);
+    closeConnection();
+    return res;
+  };
+}
+
+export const authed: GetServerSideProps = withAuthedSSR();
+export const unauthed: GetServerSideProps = withUnauthedSSR();

@@ -1,4 +1,4 @@
-import { createRef, useEffect } from "react";
+import { createRef } from "react";
 import Head from "next/head";
 import { Cover } from "@components/Cover";
 import Person from "@components/Person";
@@ -36,7 +36,7 @@ const gallery = [
   { src: "w-2.jpg", className: "col-span-3" },
 ];
 
-export default function Home() {
+const Invitation: UnauthedPage = () => {
   const main = createRef<HTMLElement>();
   const onOpen = () => {
     document.body.classList.add("open");
@@ -345,4 +345,6 @@ export default function Home() {
       </main>
     </>
   );
-}
+};
+
+export default Invitation;

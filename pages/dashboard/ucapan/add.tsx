@@ -3,7 +3,7 @@ import { PageWrapper } from "@components/layout";
 import Head from "next/head";
 export { authed as getServerSideProps } from "@lib/auth";
 
-export default function DashboardUcapanAdd() {
+const DashboardUcapanAdd: AuthedPage = () => {
   return (
     <>
       <Head>
@@ -19,4 +19,6 @@ export default function DashboardUcapanAdd() {
       </PageWrapper>
     </>
   );
-}
+};
+
+export default DashboardUcapanAdd;

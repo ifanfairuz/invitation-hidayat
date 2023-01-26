@@ -3,7 +3,7 @@ import TableUcapan from "@components/table/TableUcapan";
 import Head from "next/head";
 export { authed as getServerSideProps } from "@lib/auth";
 
-export default function DashboardUcapan() {
+const DashboardUcapan: AuthedPage = () => {
   return (
     <>
       <Head>
@@ -19,4 +19,6 @@ export default function DashboardUcapan() {
       </PageWrapper>
     </>
   );
-}
+};
+
+export default DashboardUcapan;

@@ -3,7 +3,7 @@ import Loader from "@components/Loader";
 import { FormEventHandler, useState } from "react";
 export { unauthed as getServerSideProps } from "@lib/auth";
 
-export default function Login() {
+const Login: UnauthedPage = () => {
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState("ifanfairuz");
   const [password, setPassword] = useState("admin");
@@ -103,4 +103,6 @@ export default function Login() {
       </main>
     </>
   );
-}
+};
+
+export default Login;
