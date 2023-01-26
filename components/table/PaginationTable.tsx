@@ -39,7 +39,7 @@ interface PaginationProps extends DivProps {
 }
 const PaginationTable: FC<PaginationProps> = memo(
   ({
-    pageCount,
+    pageCount: pc,
     pageSize,
     pageIndex,
     setPageSize,
@@ -53,6 +53,7 @@ const PaginationTable: FC<PaginationProps> = memo(
       return Array.from({ length }, (_, idx) => idx + start);
     };
 
+    const pageCount = useMemo(() => pc || 1, [pc]);
     const canNextPage = useMemo(
       () => pageIndex < pageCount,
       [pageIndex, pageCount]
@@ -90,6 +91,8 @@ const PaginationTable: FC<PaginationProps> = memo(
         let middleRange = range(leftSiblingIndex, rightSiblingIndex);
         return [firstPageIndex, "...", ...middleRange, "...", lastPageIndex];
       }
+
+      return [1];
     }, [pageCount, pageSize, pageIndex]);
 
     return (

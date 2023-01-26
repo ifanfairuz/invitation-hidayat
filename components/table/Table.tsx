@@ -140,26 +140,36 @@ const Table: FC<TableProps> = ({
             {...getTableBodyProps()}
             className="text-sm divide-y divide-gray-100"
           >
-            {page.map((row, i) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
-                    return (
-                      <td {...cell.getCellProps()} className="p-4 ">
-                        {cell.column.id === "#" && !!renderAction ? (
-                          renderAction(row)
-                        ) : (
-                          <div className="text-gray-800">
-                            {cell.render("Cell")}
-                          </div>
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
+            {page.length === 0 ? (
+              <tr>
+                <td className="p-4" colSpan={visibleColumns.length}>
+                  <div className="text-gray-500 text-center">
+                    Tidak ada data.
+                  </div>
+                </td>
+              </tr>
+            ) : (
+              page.map((row, i) => {
+                prepareRow(row);
+                return (
+                  <tr {...row.getRowProps()}>
+                    {row.cells.map((cell) => {
+                      return (
+                        <td {...cell.getCellProps()} className="p-4 ">
+                          {cell.column.id === "#" && !!renderAction ? (
+                            renderAction(row)
+                          ) : (
+                            <div className="text-gray-800">
+                              {cell.render("Cell")}
+                            </div>
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })
+            )}
           </tbody>
         </table>
       </div>
