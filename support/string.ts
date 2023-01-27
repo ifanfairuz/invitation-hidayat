@@ -37,3 +37,27 @@ export const translatePhone = (phone: string) => {
   res = prefix + res;
   return res.substring(0, 15).trim();
 };
+
+export const nameToUsername = (text: string) => {
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/^-+/, "")
+    .replace(/-+$/, "")
+    .replace(/\s+/g, "-")
+    .replace(/\-\-+/g, "-")
+    .replace(/[^\w\-]+/g, "");
+};
+
+export const templateWA = (
+  link: string
+) => `Assalamualaikum warahmatullahi wabarakatuh.
+
+Bersama dengan undangan ini, saya turut mengundang Bapak/Ibu untuk hadir di acara pernikahan dan khitanan anak kami.
+
+${link}
+
+Demikian undangan dari kami, yang sedang berbahagia. Merupakan suatu kehormatan dan kebahagiaan bagi kami,
+apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu.
+
+Wassalamualaikum warahmatullahi wabarakatuh.`;

@@ -1,10 +1,12 @@
+import { Tamu } from "@prisma/client";
 import Image from "next/image";
 import { FC, MouseEventHandler } from "react";
 import ScrollAnimation from "react-animate-on-scroll";
 
-export const Cover: FC<{ onOpen: MouseEventHandler<HTMLButtonElement> }> = ({
-  onOpen,
-}) => {
+export const Cover: FC<{
+  onOpen: MouseEventHandler<HTMLButtonElement>;
+  tamu: Tamu;
+}> = ({ onOpen, tamu }) => {
   return (
     <div className="cover w-full bg-main-50 z-50 overflow-hidden">
       <ScrollAnimation offset={0} animateIn="fadeIn">
@@ -84,7 +86,7 @@ export const Cover: FC<{ onOpen: MouseEventHandler<HTMLButtonElement> }> = ({
               Kepada Yth. Bapak/Ibu :
             </p>
             <div className="min-h-[50px] min-w-[200px] max-w-[300px] font-bold flex items-center px-2">
-              <p className="text-center flex-1">Kusno Fauzi</p>
+              <p className="text-center flex-1">{tamu.name}</p>
             </div>
           </div>
           <button

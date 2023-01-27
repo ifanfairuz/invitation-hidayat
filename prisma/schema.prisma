@@ -34,6 +34,7 @@ model Invitation {
 
 model Tamu {
   id            Int         @id @default(autoincrement())
+  username      String      @db.VarChar(255) @unique
   name          String      @db.VarChar(255)
   wa            String      @db.VarChar(20)
   alamat        String      @db.VarChar(255)

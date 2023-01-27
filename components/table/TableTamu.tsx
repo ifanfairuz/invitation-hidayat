@@ -6,6 +6,7 @@ import Link from "next/link";
 import { memo } from "react";
 import { confirmation } from "@components/Confirmation";
 import { useState } from "react";
+import { templateWA } from "@support/string";
 
 interface ActionProps extends CellRenderProps<Tamu> {
   afterDelete?: () => void;
@@ -37,17 +38,9 @@ const Action: FC<ActionProps> = memo(
       });
     };
 
-    const link = `https://nduoseh.com/hidayatjendelalangit?name=${row.original.id}`;
-    const text = `Assalamualaikum warahmatullahi wabarakatuh.
-
-Bersama dengan undangan ini, saya turut mengundang Bapak/Ibu untuk hadir di acara pernikahan dan khitanan anak kami.
-
-${link}
-
-Demikian undangan dari kami, yang sedang berbahagia. Merupakan suatu kehormatan dan kebahagiaan bagi kami,
-apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu.
-
-Wassalamualaikum warahmatullahi wabarakatuh.`;
+    const text = templateWA(
+      `https://nduoseh.com/hidayatjendelalangit?name=${row.original.username}`
+    );
     const walink =
       "https://wa.me/" + row.original.wa + "?text=" + encodeURI(text);
 

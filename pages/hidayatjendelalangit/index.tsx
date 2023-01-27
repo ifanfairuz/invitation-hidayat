@@ -11,6 +11,21 @@ import { MapDraw } from "@icon-park/react";
 import Comment from "@components/Comment";
 import Navigation from "@components/Navigation";
 import Music, { MusicComp } from "@components/Music";
+import { GetServerSideProps } from "next";
+import { getTamuByUsername } from "@repo/tamu";
+import { Tamu } from "@prisma/client";
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const url = new URL(req.url || "", `https://${req.headers.host}`);
+  const username = url.searchParams.get("name");
+  if (username) {
+    const tamu = await getTamuByUsername(username);
+    if (tamu) {
+      return { props: { tamu } };
+    }
+  }
+  return { notFound: true };
+};
 
 const timeline = [
   { date: "05 Februari 2023", time: "07:00 - 19:00", title: "Ramah Tamah" },
@@ -37,7 +52,7 @@ const gallery = [
   { src: "w-2.jpg", className: "col-span-3" },
 ];
 
-const Invitation: UnauthedPage = () => {
+const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
   const main = createRef<HTMLElement>();
   const music = createRef<MusicComp>();
   const onOpen = () => {
@@ -63,7 +78,7 @@ const Invitation: UnauthedPage = () => {
         </style>
       </Head>
       <main ref={main} id="main" className="closed">
-        <Cover onOpen={onOpen} />
+        <Cover onOpen={onOpen} tamu={tamu} />
         <div className="bg-1 flex relative z-0">
           <div className="flex-1 bg-black/60">
             <div className="pt-6 pb-12 relative z-0">

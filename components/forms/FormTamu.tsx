@@ -114,7 +114,7 @@ const FormTamu: FC<FormTamuProps> = ({ mode, data }) => {
         <div className="py-1 pt-2 border-t mt-2 flex items-center justify-between">
           <Link href="/dashboard/tamu">
             <button
-              type="submit"
+              type="button"
               className="bg-gray-100 text-gray-700 hover:bg-gray-300 rounded-full px-6"
               disabled={loading}
             >
