@@ -61,7 +61,7 @@ model Session {
   sid       String    @id @db.VarChar(255)
   user      String    @db.VarChar(255)
   expiredAt DateTime?
-  value     String    @default("{}") @db.Text
+  value     Json      @db.Json
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }

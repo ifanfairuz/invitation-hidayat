@@ -12,10 +12,13 @@ class Store implements SessionStore {
     try {
       const sess = await this.repo.find(sid);
       if (sess) {
-        const session = JSON.parse(sess.value, (key, value) => {
-          if (key === "expires") return new Date(value);
-          return value;
-        }) as SessionData;
+        const session = JSON.parse(
+          sess.value?.toString() || "{}",
+          (key, value) => {
+            if (key === "expires") return new Date(value);
+            return value;
+          }
+        ) as SessionData;
         if (
           session.cookie.expires &&
           session.cookie.expires.getTime() <= Date.now()
