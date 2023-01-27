@@ -4,6 +4,13 @@ const nextConfig = {
   images: {
     domains: ["images.unsplash.com"],
   },
+  redirects: async () => [
+    {
+      source: "/",
+      destination: "/hidayatjendelalangit",
+      permanent: false,
+    },
+  ],
 };
 
 const { withSuperjson } = require("next-superjson");

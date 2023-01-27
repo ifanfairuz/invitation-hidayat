@@ -1,4 +1,10 @@
-import { ButtonHTMLAttributes, FC, createRef, useEffect } from "react";
+import {
+  ButtonHTMLAttributes,
+  FC,
+  createRef,
+  useCallback,
+  useEffect,
+} from "react";
 
 export interface ALinkProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   offset?: string | number | (() => number);
@@ -48,7 +54,7 @@ const ALink: FC<ALinkProps> = (props) => {
 const Navigation: FC = () => {
   const navigation = createRef<HTMLElement>();
 
-  const onScroll = () => {
+  const onScroll = useCallback(() => {
     const $mainFirst = document.getElementById("main-first");
     const t =
       ($mainFirst?.getBoundingClientRect().top || 0) +
@@ -61,13 +67,14 @@ const Navigation: FC = () => {
       navigation.current?.classList.replace("bg-main-100", "bg-main-500");
       navigation.current?.classList.replace("text-main-800", "text-main-50");
     }
-  };
+  }, [navigation]);
+
   useEffect(() => {
     document.body.onscroll = onScroll;
     return () => {
       document.body.onscroll = () => {};
     };
-  }, []);
+  }, [onScroll]);
 
   return (
     <nav

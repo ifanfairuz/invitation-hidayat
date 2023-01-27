@@ -90,11 +90,12 @@ const Table: FC<TableProps> = ({ title, aside, columns, data }) => {
               </th>
             </tr>
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
+              <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
                 {headerGroup.headers.map((column: any) => (
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     className="p-4 whitespace-nowrap"
+                    key={column.id}
                   >
                     <div className="font-semibold text-left flex items-center justify-between">
                       <span>{column.render("Header")}</span>
@@ -146,7 +147,7 @@ const Table: FC<TableProps> = ({ title, aside, columns, data }) => {
               page.map((row, i) => {
                 prepareRow(row);
                 return (
-                  <tr {...row.getRowProps()}>
+                  <tr {...row.getRowProps()} key={row.id}>
                     {row.cells.map((cell) => {
                       return (
                         <td
@@ -155,6 +156,7 @@ const Table: FC<TableProps> = ({ title, aside, columns, data }) => {
                               (cell.column as any).className || ""
                             }`,
                           })}
+                          key={cell.column.id}
                         >
                           <div className="text-gray-800">
                             {cell.render("Cell")}

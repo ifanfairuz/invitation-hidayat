@@ -93,7 +93,7 @@ const PaginationTable: FC<PaginationProps> = memo(
       }
 
       return [1];
-    }, [pageCount, pageSize, pageIndex]);
+    }, [pageCount, pageIndex]);
 
     return (
       <div

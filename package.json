@@ -33,6 +33,7 @@
     "react-dom": "18.2.0",
     "react-table": "^7.8.0",
     "react-transition-group": "^4.4.5",
+    "sharp": "^0.31.3",
     "smoothscroll-polyfill": "^0.4.4",
     "superjson": "^1.12.2",
     "swr": "^2.0.1",

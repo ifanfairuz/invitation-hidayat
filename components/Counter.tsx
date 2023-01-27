@@ -1,7 +1,6 @@
 import { FC, useEffect, useMemo, useState } from "react";
 
 const Counter: FC = () => {
-  const date = new Date(Date.parse("2023-02-06 16:00:00"));
   const [d, setD] = useState(0);
   const pad = (val: number) => {
     var s = val + "";
@@ -22,6 +21,7 @@ const Counter: FC = () => {
   }, [d]);
 
   useEffect(() => {
+    const date = new Date(Date.parse("2023-02-06 16:00:00"));
     setD(Math.round((date.getTime() - Date.now()) / 1000));
     let interval = setInterval(() => {
       setD((a) => a - 1);
