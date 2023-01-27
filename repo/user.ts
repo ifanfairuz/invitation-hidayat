@@ -1,6 +1,18 @@
-import crypto, { BinaryLike } from "crypto";
-import { closeConnection, getConection } from "./connection";
+import crypto from "crypto";
+import { getConection } from "./connection";
 import { User } from "@prisma/client";
+
+export function createHashPassword(password: string, salt?: string) {
+  return crypto
+    .pbkdf2Sync(
+      password,
+      salt || crypto.randomBytes(16).toString("hex"),
+      1000,
+      64,
+      "sha512"
+    )
+    .toString("hex");
+}
 
 export function getAllUser() {
   return getConection().user.findMany();
@@ -8,9 +20,7 @@ export function getAllUser() {
 
 export function createUser(data: InsertAI<User>) {
   const salt = crypto.randomBytes(16).toString("hex");
-  const password = crypto
-    .pbkdf2Sync(data.password, salt, 1000, 64, "sha512")
-    .toString("hex");
+  const password = createHashPassword(data.password, salt);
   return getConection().user.create({
     data: { ...data, password, salt } as any,
   });
@@ -34,9 +44,6 @@ export function deleteUser(username: User["username"]) {
   return getConection().user.delete({ where: { username } });
 }
 
-export function validatePassword(user: User, pass: BinaryLike) {
-  const inputHash = crypto
-    .pbkdf2Sync(pass, user.salt, 1000, 64, "sha512")
-    .toString("hex");
-  return user.password === inputHash;
+export function validatePassword(user: User, pass: string) {
+  return user.password === createHashPassword(pass, user.salt);
 }
