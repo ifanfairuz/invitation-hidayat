@@ -4,7 +4,8 @@ import { Middleware } from "next-connect";
 
 var prisma: PrismaClient | undefined;
 export const getConection = () => (prisma = prisma || new PrismaClient());
-export const closeConnection = () => !!prisma && prisma.$disconnect();
+export const closeConnection = () =>
+  !!prisma && prisma.$disconnect().then(() => (prisma = undefined));
 
 export const middlewareDB: Middleware<
   IncomingMessage,

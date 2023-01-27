@@ -12,12 +12,12 @@ function createHashPassword(password, salt = undefined) {
     )
     .toString("hex");
 
-  return `PASS: ${p}\nSALT: ${s}`;
+  return `RAW: ${password}\nPASS: ${p}\nSALT: ${s}`;
 }
 
 const HANDLER = {
   pass:{
-    gen: (password) => console.log(createHashPassword(password || 'admin'))
+    gen: (password) => console.log(createHashPassword(password))
   }
 }
 

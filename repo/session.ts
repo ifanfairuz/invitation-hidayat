@@ -55,7 +55,7 @@ export class SessionRepo {
   private connection: ConnectionDB;
 
   constructor(connection?: ConnectionDB) {
-    this.connection = connection || new PrismaClient();
+    this.connection = connection || getConection();
   }
 
   getAll() {

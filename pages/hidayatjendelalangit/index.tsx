@@ -1,4 +1,4 @@
-import { createRef } from "react";
+import { createRef, useEffect } from "react";
 import Head from "next/head";
 import { Cover } from "@components/Cover";
 import Person from "@components/Person";
@@ -61,6 +61,14 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
     music.current?.play();
   };
 
+  useEffect(() => {
+    document.body.scrollTo({ top: 0, behavior: 'auto' });
+    setTimeout(() => {
+      document.body.scrollTo({ top: 0, behavior: 'auto' });
+      document.body.classList.add('close');
+    }, 100);
+  }, []);
+
   return (
     <>
       <Head>
@@ -71,7 +79,7 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
         />
         <style>
           {`
-          body { overflow: hidden !important; }
+          body.close { overflow: hidden !important; }
           body.open {
             overflow: auto !important;
           }
