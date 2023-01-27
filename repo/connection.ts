@@ -15,3 +15,5 @@ export const middlewareDB: Middleware<
   });
   next();
 };
+
+export type ConnectionDB = ReturnType<typeof getConection>;

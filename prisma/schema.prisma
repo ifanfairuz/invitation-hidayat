@@ -58,6 +58,8 @@ model Comment {
 
 model Session {
   sid           String      @id @db.VarChar(255)
+  user          String      @db.VarChar(255)
+  expiredAt     DateTime?
   value         String      @db.Text @default("{}")
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt

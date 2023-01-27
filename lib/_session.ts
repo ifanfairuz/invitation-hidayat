@@ -1,14 +1,16 @@
-import {
-  createOrUpdateSession,
-  deleteSession,
-  findSession,
-} from "@repo/session";
+import { SessionRepo } from "@repo/session";
 import nextSession, { SessionStore } from "next-session";
 
 class Store implements SessionStore {
+  repo: SessionRepo;
+
+  constructor() {
+    this.repo = new SessionRepo();
+  }
+
   async get(sid: string): Promise<SessionData | null | undefined> {
     try {
-      const sess = await findSession(sid);
+      const sess = await this.repo.find(sid);
       if (sess) {
         const session = JSON.parse(sess.value, (key, value) => {
           if (key === "expires") return new Date(value);
@@ -32,7 +34,11 @@ class Store implements SessionStore {
 
   async set(sid: string, sess: SessionData) {
     try {
-      await createOrUpdateSession(sid, { value: JSON.stringify(sess) });
+      await this.repo.createOrUpdate(sid, {
+        value: JSON.stringify(sess),
+        expiredAt: sess.cookie.expires || null,
+        user: sess.passport.user,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -40,7 +46,10 @@ class Store implements SessionStore {
 
   async destroy(sid: string) {
     try {
-      await deleteSession(sid);
+      const sess = await this.repo.find(sid);
+      SessionRepo.deleteExpired(sess?.user);
+
+      await this.repo.delete(sid);
     } catch (error) {
       console.error(error);
     }
@@ -48,7 +57,11 @@ class Store implements SessionStore {
 
   async touch(sid: string, sess: SessionData) {
     try {
-      await createOrUpdateSession(sid, { value: JSON.stringify(sess) });
+      await this.repo.createOrUpdate(sid, {
+        value: JSON.stringify(sess),
+        expiredAt: sess.cookie.expires || null,
+        user: sess.passport.user,
+      });
     } catch (error) {
       console.error(error);
     }
