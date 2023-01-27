@@ -1,9 +1,21 @@
 import { PageWrapper } from "@components/layout";
 import TableTamu from "@components/table/TableTamu";
 import Head from "next/head";
-export { authed as getServerSideProps } from "@lib/auth";
+import { Tamu } from "@prisma/client";
+import { getAllTamu } from "@repo/tamu";
+import { withAuthedSSR } from "@lib/auth";
 
-export default function DashboardTamu() {
+export const getServerSideProps = withAuthedSSR<DashboardTamuProps>(
+  async () => {
+    const data = await getAllTamu();
+    return { props: { data } };
+  }
+);
+
+type DashboardTamuProps = {
+  data: Tamu[];
+};
+const DashboardTamu: AuthedPage<DashboardTamuProps> = ({ data }) => {
   return (
     <>
       <Head>
@@ -14,9 +26,11 @@ export default function DashboardTamu() {
       </Head>
       <PageWrapper withSidebar>
         <div className="p-4">
-          <TableTamu data={require("MOCK_DATA.json")} />
+          <TableTamu data={data} />
         </div>
       </PageWrapper>
     </>
   );
-}
+};
+
+export default DashboardTamu;

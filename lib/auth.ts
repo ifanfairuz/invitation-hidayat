@@ -11,8 +11,26 @@ export const authConnect = nextConnect()
   .use(passport.initialize())
   .use(passport.session());
 
-export const authedHandler: <T>() => AuthApiHandler<T> = () =>
-  nextConnect().use(authConnect);
+const mustAuth: MiddlewareApiAuth = (req, res, next) => {
+  if (req.user) return next();
+  return res.json("Unauthorized.");
+};
+const mustUnauth: MiddlewareApiAuth = (req, res, next) => {
+  if (!req.user) return next();
+  return res.json("Unauthorized.");
+};
+
+export function authedHandler<T>(): AuthApiHandler<T> {
+  const handler = nextConnect().use(authConnect) as any;
+  handler.mustAuth = function () {
+    return this.use(mustAuth);
+  };
+  handler.mustUnauth = function () {
+    return this.use(mustUnauth);
+  };
+  return handler as AuthApiHandler<T>;
+}
+
 const userSSR = (
   req: IncomingMessage,
   res: ServerResponse<IncomingMessage>
@@ -23,8 +41,16 @@ const userSSR = (
     .then((r) => r.user)
     .then((user) => {
       if (user) {
-        const { createdAt, updatedAt, password, salt, ...data } = user;
-        return data;
+        const {
+          createdAt,
+          updatedAt,
+          password,
+          salt,
+          invitation: iData,
+          ...data
+        } = user;
+        const { createdAt: ca, updatedAt: ua, ...invitation } = iData || {};
+        return { ...data, invitation } as UserSSR;
       }
       return undefined;
     });

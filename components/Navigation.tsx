@@ -40,7 +40,9 @@ const ALink: FC<ALinkProps> = (props) => {
     require("smoothscroll-polyfill").polyfill();
   }, []);
 
-  return <button {...props} onClick={onClick} className="flex-1 text-center" />;
+  return (
+    <button {...props} onClick={onClick} className="flex-1 text-center px-0" />
+  );
 };
 
 const Navigation: FC = () => {
@@ -85,7 +87,7 @@ const Navigation: FC = () => {
               clipRule="evenodd"
               viewBox="0 0 64 64"
               enableBackground="new 0 0 390.675 390.675"
-              className="w-12 h-12 mx-auto"
+              className="w-9 h-9 lg:w-12 lg:h-12 mx-auto"
             >
               <g>
                 <path
@@ -103,7 +105,7 @@ const Navigation: FC = () => {
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 245.01 245.01"
-              className="w-11 h-11 mx-auto"
+              className="w-8 h-8 lg:w-11 lg:h-11 mx-auto"
             >
               <path
                 d="M244.914,188.109l-9.951-133.345c-0.39-5.22-4.738-9.256-9.973-9.256h-31.994v54.413h2.666c2.571,0,4.737,1.92,5.047,4.473
@@ -120,7 +122,7 @@ const Navigation: FC = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="w-11 h-11 mx-auto"
+              className="w-8 h-8 lg:w-11 lg:h-11 mx-auto"
             >
               <g
                 fill="none"
@@ -140,7 +142,7 @@ const Navigation: FC = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="w-11 h-11 mx-auto"
+              className="w-8 h-8 lg:w-11 lg:h-11 mx-auto"
             >
               <path
                 fill="currentColor"
@@ -154,7 +156,7 @@ const Navigation: FC = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              className="w-11 h-11 mx-auto"
+              className="w-8 h-8 lg:w-11 lg:h-11 mx-auto"
             >
               <path
                 fill="currentColor"
@@ -168,7 +170,7 @@ const Navigation: FC = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
-              className="w-9 h-9 mx-auto"
+              className="w-7 h-7 lg:w-9 lg:h-9 mx-auto"
             >
               <path
                 fill="currentColor"

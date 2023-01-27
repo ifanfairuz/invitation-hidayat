@@ -1,9 +1,19 @@
 import { PageWrapper } from "@components/layout";
 import TableUcapan from "@components/table/TableUcapan";
+import { Comment } from "@prisma/client";
 import Head from "next/head";
-export { authed as getServerSideProps } from "@lib/auth";
+import { withAuthedSSR } from "@lib/auth";
+import { getAllComment } from "@repo/comment";
 
-const DashboardUcapan: AuthedPage = () => {
+export const getServerSideProps = withAuthedSSR(async () => {
+  const data = await getAllComment(false);
+  return { props: { data } };
+});
+
+interface DashboardUcapanProps {
+  data: Comment[];
+}
+const DashboardUcapan: AuthedPage<DashboardUcapanProps> = ({ data }) => {
   return (
     <>
       <Head>
@@ -14,7 +24,7 @@ const DashboardUcapan: AuthedPage = () => {
       </Head>
       <PageWrapper withSidebar>
         <div className="p-4">
-          <TableUcapan data={require("MOCK_DATA_UCAPAN.json")} />
+          <TableUcapan data={data} />
         </div>
       </PageWrapper>
     </>

@@ -52,7 +52,7 @@ export const HeaderSidebarComponent: FC<HeaderSidebarProps> = ({
       <nav ref={navComp} className="header">
         <div className="nav-container max-w-7xl mx-auto">
           <div className="relative flex items-center justify-between h-16">
-            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <div className="absolute inset-y-0 left-4 flex items-center sm:hidden">
               <button
                 onClick={toggleMenu}
                 type="button"
@@ -83,7 +83,7 @@ export const HeaderSidebarComponent: FC<HeaderSidebarProps> = ({
               </button>
             </div>
             <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"></div>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div className="absolute inset-y-0 right-4 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <UserMenuNavigation
                 open={userMenuOpen}
                 onOpenChange={toggleUserMenu}

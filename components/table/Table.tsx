@@ -14,6 +14,7 @@ import {
   Column,
   UseGlobalFiltersColumnOptions,
   UseSortByColumnOptions,
+  CellProps,
 } from "react-table";
 import PaginationTable from "./PaginationTable";
 
@@ -40,15 +41,8 @@ GlobalFilterInput.displayName = "GlobalFilterInput";
 type TableProps = TableOptions<{}> & {
   title?: string;
   aside?: JSX.Element;
-  renderAction?: (row: Row) => JSX.Element;
 };
-const Table: FC<TableProps> = ({
-  title,
-  aside,
-  columns,
-  data,
-  renderAction,
-}) => {
+const Table: FC<TableProps> = ({ title, aside, columns, data }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -155,14 +149,16 @@ const Table: FC<TableProps> = ({
                   <tr {...row.getRowProps()}>
                     {row.cells.map((cell) => {
                       return (
-                        <td {...cell.getCellProps()} className="p-4 ">
-                          {cell.column.id === "#" && !!renderAction ? (
-                            renderAction(row)
-                          ) : (
-                            <div className="text-gray-800">
-                              {cell.render("Cell")}
-                            </div>
-                          )}
+                        <td
+                          {...cell.getCellProps({
+                            className: `p-4 ${
+                              (cell.column as any).className || ""
+                            }`,
+                          })}
+                        >
+                          <div className="text-gray-800">
+                            {cell.render("Cell")}
+                          </div>
                         </td>
                       );
                     })}
@@ -189,6 +185,7 @@ const Table: FC<TableProps> = ({
 type WithActionData<T> = T & { ["#"]: any };
 export type TableColumns<T extends object> = (Column<WithActionData<T>> &
   UseGlobalFiltersColumnOptions<WithActionData<T>> &
-  UseSortByColumnOptions<WithActionData<T>>)[];
+  UseSortByColumnOptions<WithActionData<T>> & { className?: string })[];
+export type CellRenderProps<T extends object> = CellProps<WithActionData<T>>;
 
 export default Table;

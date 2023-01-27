@@ -10,6 +10,7 @@ import Image from "next/image";
 import { MapDraw } from "@icon-park/react";
 import Comment from "@components/Comment";
 import Navigation from "@components/Navigation";
+import Music, { MusicComp } from "@components/Music";
 
 const timeline = [
   { date: "05 Februari 2023", time: "07:00 - 19:00", title: "Ramah Tamah" },
@@ -38,9 +39,11 @@ const gallery = [
 
 const Invitation: UnauthedPage = () => {
   const main = createRef<HTMLElement>();
+  const music = createRef<MusicComp>();
   const onOpen = () => {
     document.body.classList.add("open");
     main.current?.classList.remove("closed");
+    music.current?.play();
   };
 
   return (
@@ -341,6 +344,7 @@ const Invitation: UnauthedPage = () => {
             </div>
           </div>
         </div>
+        <Music ref={music} />
         <Navigation />
       </main>
     </>

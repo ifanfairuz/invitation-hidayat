@@ -68,7 +68,7 @@ export const getSession = nextSession({
     sameSite: "lax",
   },
 });
-const session: MiddlewareSession = async (req, res, next) => {
+const session: MiddlewareApiSession = async (req, res, next) => {
   await getSession(req, res);
   next();
 };

@@ -1,7 +1,5 @@
 import { FC, useRef } from "react";
-import Image from "next/image";
 import { CSSTransition } from "react-transition-group";
-import Link from "next/link";
 
 export interface UserMenuNavigationProps extends DivProps {
   open?: boolean;
@@ -16,7 +14,15 @@ const UserMenuNavigationComponent: FC<UserMenuNavigationProps> = ({
   const toggleDropDown = () => {
     onOpenChange && onOpenChange(!open);
   };
-  const logout = () => {};
+  const logout = () => {
+    fetch("/api/auth/logout", {
+      method: "POST",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res === "OK") window.location.assign("/login");
+      });
+  };
 
   return (
     <div {...props} className={`ml-3 relative ${props.className || ``}`}>
@@ -24,17 +30,17 @@ const UserMenuNavigationComponent: FC<UserMenuNavigationProps> = ({
         <button
           onClick={toggleDropDown}
           type="button"
-          className="bg-gray-100 flex text-sm rounded-full focus:outline-none p-2"
+          className="bg-main-400 flex text-sm rounded-full focus:outline-none p-2"
           aria-expanded="false"
           aria-haspopup="true"
         >
           <span className="sr-only">Open user menu</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
+            width="25"
+            height="25"
             viewBox="0 0 15 15"
-            className="text-gray-700"
+            className="text-main-50"
           >
             <path
               fill="currentColor"
