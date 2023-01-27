@@ -27,8 +27,8 @@ export default authedHandler<Res>()
   .put(async (req, res) => {
     try {
       const data: UpdateParam = req.body;
-      await updateTamu(data.id, data);
-      res.json({ message: "OK" });
+      const result = await updateTamu(data.id, data);
+      res.json({ message: "OK", data: result });
     } catch (error) {
       res.status(500).json({ message: String(error) });
     }

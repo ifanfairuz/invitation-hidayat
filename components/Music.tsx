@@ -20,16 +20,7 @@ const Music: ForwardRefExoticComponent<RefAttributes<MusicComp>> =
     const box = createRef<HTMLDivElement>();
     const [playing, setPlaying] = useState(false);
 
-    const play = () =>
-      music.current?.play()?.catch((error) => {
-        document.addEventListener(
-          "click",
-          () => {
-            play();
-          },
-          { once: true }
-        );
-      });
+    const play = () => music.current?.play();
     const pause = () => music.current?.pause();
     const toggle = () =>
       playing ? music.current?.pause() : music.current?.play();
@@ -51,7 +42,7 @@ const Music: ForwardRefExoticComponent<RefAttributes<MusicComp>> =
     return (
       <div
         ref={box}
-        className="fixed h-14 w-14 lg:h-16 lg:w-16 text-main-50 transition-all duration-300 z-20 top-4 left-4 lg:top-8 lg:left-8 mx-auto rounded-xl flex shadow-lg rounded-full bg-main-200 p-2"
+        className="fixed h-14 w-14 lg:h-16 lg:w-16 text-main-50 transition-all duration-300 z-20 top-4 left-4 lg:top-auto lg:bottom-8 lg:left-8 mx-auto rounded-xl flex shadow-lg rounded-full bg-main-200 p-2"
       >
         <div
           className={
@@ -68,13 +59,7 @@ const Music: ForwardRefExoticComponent<RefAttributes<MusicComp>> =
             )}
           </button>
         </div>
-        <audio
-          ref={music}
-          loop
-          preload="auto"
-          autoPlay
-          src="/music.ogg"
-        ></audio>
+        <audio ref={music} loop preload="auto" src="/music.ogg"></audio>
       </div>
     );
   });

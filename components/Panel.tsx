@@ -8,7 +8,7 @@ const Panel: FC<PanelProps> = ({ title, children, aside, ...props }) => {
     <div
       {...props}
       className={
-        "w-full max-w-5xl mx-auto bg-white shadow-lg border border-gray-200 rounded-lg " +
+        "w-full mx-auto bg-white shadow-lg border border-gray-200 rounded-lg " +
         (props.className || "")
       }
     >

@@ -38,17 +38,6 @@ export const translatePhone = (phone: string) => {
   return res.substring(0, 15).trim();
 };
 
-export const nameToUsername = (text: string) => {
-  return text
-    .toString()
-    .toLowerCase()
-    .replace(/^-+/, "")
-    .replace(/-+$/, "")
-    .replace(/\s+/g, "-")
-    .replace(/\-\-+/g, "-")
-    .replace(/[^\w\-]+/g, "");
-};
-
 export const templateWA = (
   link: string
 ) => `Assalamualaikum warahmatullahi wabarakatuh.
@@ -61,3 +50,11 @@ Demikian undangan dari kami, yang sedang berbahagia. Merupakan suatu kehormatan 
 apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu.
 
 Wassalamualaikum warahmatullahi wabarakatuh.`;
+
+export const genLinkInvitation = (username: string, host: string = "") =>
+  `${host}/hidayatjendelalangit?name=${username}`;
+
+export const genLinkWA = (wa: string, username: string) =>
+  `https://wa.me/${wa}?text=${encodeURI(
+    templateWA(genLinkInvitation(username, process.env.APP_URL))
+  )}`;

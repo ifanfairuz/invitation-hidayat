@@ -79,7 +79,7 @@ const Navigation: FC = () => {
   return (
     <nav
       ref={navigation}
-      className="fixed h-16 bg-main-500 text-main-50 transition-all duration-300 w-[90vw] max-w-[500px] z-20 bottom-2 left-0 right-0 mx-auto rounded-xl flex shadow-lg"
+      className="fixed h-16 bg-main-500 text-main-50 transition-all duration-300 w-[90vw] max-w-[500px] z-20 bottom-4 lg:bottom-8 left-0 right-0 mx-auto rounded-xl flex shadow-lg"
     >
       <ul className="flex flex-1">
         <li className="flex-1 hover:bg-black/10 flex flex-col">

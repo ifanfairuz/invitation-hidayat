@@ -68,7 +68,10 @@ const FormTamu: FC<FormTamuProps> = ({ mode, data }) => {
   };
 
   return (
-    <Panel title={(mode === "edit" ? "Ubah" : "Tambah") + " Tamu"}>
+    <Panel
+      title={(mode === "edit" ? "Ubah" : "Tambah") + " Tamu"}
+      className="max-w-5xl"
+    >
       <form onSubmit={submit}>
         <div className="px-4 pb-4">
           {!!error && (

@@ -43,8 +43,6 @@ const Login: UnauthedPage = () => {
       <Head>
         <title>Login | Nduoseh</title>
         <meta name="description" content="Nduoseh Login Page" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         <div className="bg-main-100 h-screen overflow-hidden flex items-center justify-center">

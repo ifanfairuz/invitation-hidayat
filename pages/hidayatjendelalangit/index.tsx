@@ -64,10 +64,11 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
   return (
     <>
       <Head>
-        <title>Keluarga Bpk.Hidayat/Ibu.Wati</title>
-        <meta name="description" content="Keluarga Bpk.Hidayat/Ibu.Wati" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Undangan Keluarga Bpk.Hidayat/Ibu.Wati</title>
+        <meta
+          name="description"
+          content="Undangan Keluarga Bpk.Hidayat/Ibu.Wati"
+        />
         <style>
           {`
           body { overflow: hidden !important; }
@@ -334,7 +335,7 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
                   KIRIM UCAPAN
                 </h2>
               </ScrollAnimation>
-              <Comment />
+              <Comment name={tamu.name} tamuid={tamu.id} />
             </div>
           </div>
           <div className="bg-1 flex">

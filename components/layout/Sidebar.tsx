@@ -114,7 +114,7 @@ export const SidebarComponent: FC<SidebarProps> = ({
         <Logo withLabel />
       </div>
       <ul className="relative px-4">
-        <SidebarItem
+        {/* <SidebarItem
           href="/dashboard"
           title="Dashboard"
           icon={
@@ -179,7 +179,7 @@ export const SidebarComponent: FC<SidebarProps> = ({
               />
             </svg>
           }
-        />
+        /> */}
         <SidebarItem
           href="/dashboard/tamu"
           title="Tamu Undangan"

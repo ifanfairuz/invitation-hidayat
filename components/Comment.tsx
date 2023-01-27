@@ -1,5 +1,5 @@
 import { FC, useState, createRef } from "react";
-import { Send } from "@icon-park/react";
+import { SendOne } from "@icon-park/react";
 import { Comment as CommentModel } from "@prisma/client";
 import Loader from "./Loader";
 import { useEffect } from "react";
@@ -19,10 +19,10 @@ const Card: FC<{ data: CommentModel }> = ({ data }) => {
   );
 };
 
-const Comment: FC = () => {
+const Comment: FC<{ name?: string; tamuid?: number }> = ({ tamuid, name }) => {
   const box = createRef<HTMLDivElement>();
   const [comments, setComments] = useState<CommentModel[]>([]);
-  const [name, setname] = useState("");
+  const [withname, setwithname] = useState(true);
   const [text, settext] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -34,13 +34,12 @@ const Comment: FC = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, text }),
+      body: JSON.stringify({ tamuid, withname, text }),
     })
       .then((res) => res.json())
       .then((res) => {
         if (res.message === "OK") {
           setComments((c) => [res.data, ...c]);
-          setname("");
           settext("");
           box.current?.scrollTo({ top: 0, behavior: "smooth" });
         }
@@ -67,17 +66,7 @@ const Comment: FC = () => {
         className={comments.length === 0 ? "lg:col-span-2" : ""}
       >
         <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full md:w-full px-3 mb-4">
-            <input
-              type="text"
-              className="bg-main-00 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-400 focus:outline-none focus:bg-white"
-              name="name"
-              placeholder="Nama"
-              value={name}
-              onChange={(e) => setname(e.target.value)}
-            />
-          </div>
-          <div className="w-full md:w-full px-3 mb-4">
+          <div className="w-full md:w-full px-3 mb-2">
             <textarea
               className="bg-main-00 rounded border border-gray-400 leading-normal resize-none w-full h-28 py-2 px-3 font-medium placeholder-gray-400 focus:outline-none focus:bg-white"
               name="body"
@@ -87,11 +76,29 @@ const Comment: FC = () => {
               onChange={(e) => settext(e.target.value)}
             ></textarea>
           </div>
+          <div className="w-full md:w-full px-3 inline-flex gap-1 text-white">
+            <p>Kirim sebagai :</p>
+            <p className="font-medium">
+              {withname && !!name ? name : "---Tanpa Nama---"}
+            </p>
+          </div>
+          <div className="w-full md:w-full px-3 mb-4 inline-flex gap-1 text-white">
+            <label className="inline-flex items-center">
+              <input
+                type="checkbox"
+                className="form-checkbox h-4 w-4 text-red-600"
+                name="withname"
+                checked={!withname}
+                onChange={(e) => setwithname(!e.target.checked)}
+              />
+              <span className="ml-2">Sembunyikan Nama</span>
+            </label>
+          </div>
           <div className="w-full md:w-full flex items-start md:w-full px-3">
             <div>
               <button
                 type="submit"
-                className="px-3 py-2 rounded-md f-sans text-main-500 bg-main-00 flex items-center gap-2 text-md flex items-center gap-1"
+                className="px-3 py-2 rounded-md f-sans text-main-500 bg-main-00 flex items-center gap-2 text-md inline-flex items-center gap-1"
               >
                 {loading ? (
                   <>
@@ -100,7 +107,7 @@ const Comment: FC = () => {
                   </>
                 ) : (
                   <>
-                    <Send />
+                    <SendOne className="text-lg mr-1" />
                     Kirim
                   </>
                 )}

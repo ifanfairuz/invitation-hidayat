@@ -21,11 +21,9 @@ const DashboardTamu: AuthedPage<DashboardTamuProps> = ({ data }) => {
       <Head>
         <title>Tamu Undangan | Nduoseh</title>
         <meta name="description" content="Nduoseh Dashboard Page" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageWrapper withSidebar>
-        <div className="p-4">
+        <div className="p-4 md:px-6 lg:px-8">
           <TableTamu data={data} />
         </div>
       </PageWrapper>

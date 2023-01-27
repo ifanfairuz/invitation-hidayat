@@ -83,7 +83,7 @@ export const HeaderSidebarComponent: FC<HeaderSidebarProps> = ({
               </button>
             </div>
             <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"></div>
-            <div className="absolute inset-y-0 right-4 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <div className="absolute inset-y-0 right-4 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 sm:mr-8">
               <UserMenuNavigation
                 open={userMenuOpen}
                 onOpenChange={toggleUserMenu}

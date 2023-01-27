@@ -14,7 +14,10 @@ interface EditProps {
 type FormUcapanProps = AddProps | EditProps;
 const FormUcapan: FC<FormUcapanProps> = ({ mode, data }) => {
   return (
-    <Panel title={(mode === "edit" ? "Ubah" : "Tambah") + " Ucapan"}>
+    <Panel
+      title={(mode === "edit" ? "Ubah" : "Tambah") + " Ucapan"}
+      className="max-w-5xl"
+    >
       <form action="">
         <div className="px-4 pb-4">
           <div className="py-1">

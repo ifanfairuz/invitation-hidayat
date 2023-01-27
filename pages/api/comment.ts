@@ -1,4 +1,4 @@
-import { Comment } from "@prisma/client";
+import { Comment, Tamu } from "@prisma/client";
 import {
   createComment,
   deleteComment,
@@ -6,10 +6,14 @@ import {
   updateComment,
 } from "@repo/comment";
 import { middlewareDB } from "@repo/connection";
+import { getTamu } from "@repo/tamu";
 import { NextApiRequest, NextApiResponse } from "next";
 import nextConnect from "next-connect";
 
-type InsertParam = Pick<Comment, "name" | "text">;
+type InsertParam = Pick<Comment, "text"> & {
+  withname: boolean;
+  tamuid: number;
+};
 type UpdateParam = Pick<Comment, "show" | "id">;
 type DeleteParam = Pick<Comment, "id">;
 type GetRes = { message: string; datas: Comment[] };
@@ -29,10 +33,12 @@ export default nextConnect<NextApiRequest, NextApiResponse<Res>>()
   })
   .post(async (req, res) => {
     try {
-      const data: InsertParam = req.body;
+      const { withname, tamuid, ...data }: InsertParam = req.body;
+      let tamu: Tamu | null = null;
+      if (withname) tamu = await getTamu(tamuid);
       const comment = await createComment({
         ...data,
-        name: data.name || "Tanpa Nama",
+        name: withname && !!tamu ? tamu.name : "---Tanpa Nama---",
         show: true,
         invitationId: 1,
       });
