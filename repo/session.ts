@@ -1,33 +1,32 @@
 import { ConnectionDB, getConection } from "./connection";
 import { PrismaClient, Session } from "@prisma/client";
 
-const getAllSessionReal = (con: ConnectionDB) =>
-  getConection().session.findMany();
+const getAllSessionReal = (con: ConnectionDB) => con.session.findMany();
 const createSessionReal = (con: ConnectionDB, data: InsertAI<Session, "sid">) =>
-  getConection().session.create({ data: data as any });
+  con.session.create({ data: data as any });
 const createOrUpdateSessionReal = (
   con: ConnectionDB,
   sid: Session["sid"],
   data: InsertAI<Session, "sid">
 ) =>
-  getConection().session.upsert({
-    create: { sid, ...data },
-    update: { ...data },
+  con.session.upsert({
+    create: { sid, ...(data as any) },
+    update: { ...(data as any) },
     where: { sid },
   });
 const findSessionReal = (con: ConnectionDB, sid: Session["sid"]) =>
-  getConection().session.findFirst({ where: { sid } });
+  con.session.findFirst({ where: { sid } });
 const updateSessionReal = (
   con: ConnectionDB,
   sid: Session["sid"],
   update: InsertAI<Session, "sid">
 ) =>
-  getConection().session.update({
+  con.session.update({
     data: update as any,
     where: { sid },
   });
 const deleteSessionReal = (con: ConnectionDB, sid: Session["sid"]) =>
-  getConection().session.delete({ where: { sid } });
+  con.session.delete({ where: { sid } });
 
 type PWithoutConnection<T extends (...args: any) => any> = T extends (
   con: ConnectionDB,
