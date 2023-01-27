@@ -1,15 +1,18 @@
 const crypto = require("crypto");
 
 function createHashPassword(password, salt = undefined) {
-  return crypto
+  const s = salt || crypto.randomBytes(16).toString("hex");
+  const p = crypto
     .pbkdf2Sync(
       password,
-      salt || crypto.randomBytes(16).toString("hex"),
+      s,
       1000,
       64,
       "sha512"
     )
     .toString("hex");
+
+  return `PASS: ${p}\nSALT: ${s}`;
 }
 
 const HANDLER = {
