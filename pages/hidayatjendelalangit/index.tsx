@@ -286,22 +286,16 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
                         Desa Jatiarjo Kec. Prigen
                       </h3>
                     </ScrollAnimation>
-                    <ScrollAnimation
-                      animateIn="fadeInUp"
-                      animateOut="fadeOutDown"
-                      animatePreScroll={false}
+                    <a
+                      href="https://maps.google.com/maps/dir//Kedai+gumandar+7M47%2BHQP+Tegal+Kidul,+Jatiarjo+Kec.+Prigen,+Pasuruan,+Jawa+Timur+67157/@-7.7435577,112.6644786,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0x2dd7d7a48d97ad1d:0x51bff73388cd7ca1"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-3 py-2 rounded-md f-sans text-main-500 bg-main-00 flex items-center gap-2 text-md flex items-center gap-1"
+                      onClick={onOpen}
                     >
-                      <a
-                        href="https://maps.google.com/maps/dir//Kedai+gumandar+7M47%2BHQP+Tegal+Kidul,+Jatiarjo+Kec.+Prigen,+Pasuruan,+Jawa+Timur+67157/@-7.7435577,112.6644786,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0x2dd7d7a48d97ad1d:0x51bff73388cd7ca1"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="px-3 py-2 rounded-md f-sans text-main-500 bg-main-00 flex items-center gap-2 text-md flex items-center gap-1"
-                        onClick={onOpen}
-                      >
-                        <MapDraw theme="filled" />
-                        Buka Peta
-                      </a>
-                    </ScrollAnimation>
+                      <MapDraw theme="filled" />
+                      Buka Peta
+                    </a>
                   </div>
                 </div>
               </div>
