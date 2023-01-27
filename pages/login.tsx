@@ -5,8 +5,8 @@ export { unauthed as getServerSideProps } from "@lib/auth";
 
 const Login: UnauthedPage = () => {
   const [loading, setLoading] = useState(false);
-  const [username, setUsername] = useState("ifanfairuz");
-  const [password, setPassword] = useState("admin");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const submit: FormEventHandler<HTMLFormElement> = (e) => {
