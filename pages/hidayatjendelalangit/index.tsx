@@ -260,7 +260,7 @@ const Main: FC<{ tamu: Tamu }> = ({ tamu }) => {
           className="min-h-screen bg-main-00 relative z-1 overflow-x-hidden -mt-[1px]"
           id="pengantin"
         >
-          <MainContent />
+          <MainContent animation={true} />
           <div className="container mx-auto p-8 bg-main-00 flex flex-col lg:flex-row gap-16 lg:gap-8">
             <Timeline datas={timeline} className="lg:w-5/12" id="acara" />
             <div
