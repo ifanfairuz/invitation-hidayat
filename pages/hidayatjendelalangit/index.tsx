@@ -15,6 +15,7 @@ import { GetServerSideProps } from "next";
 import { getTamuByUsername } from "@repo/tamu";
 import { Tamu } from "@prisma/client";
 import { useStaticBackground } from "@components/hooks";
+import { useEffect } from "react";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const url = new URL(req.url || "", `https://${req.headers.host}`);
@@ -59,10 +60,13 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
   const onOpen = () => {
     document.body.classList.add("open");
     main.current?.classList.remove("closed");
-    document.body.scrollTo({ top: 0 });
     music.current?.play();
   };
   const staticBackground = useStaticBackground();
+
+  useEffect(() => {
+    document.body.scrollTop = 0;
+  }, []);
 
   return (
     <>
