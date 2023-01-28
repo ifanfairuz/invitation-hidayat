@@ -59,6 +59,7 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
   const onOpen = () => {
     document.body.classList.add("open");
     main.current?.classList.remove("closed");
+    document.body.scrollTo({ top: 0 });
     music.current?.play();
   };
   const staticBackground = useStaticBackground();
@@ -268,29 +269,23 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
             <div className="container mx-auto p-8 bg-main-00 flex flex-col lg:flex-row gap-16 lg:gap-8">
               <Timeline datas={timeline} className="lg:w-5/12" id="acara" />
               <div
-                className="flex-1 flex bg-main-500 rounded-xl shadow-xl"
+                className="flex-1 flex bg-main-100 rounded-xl shadow-2xl overflow-hidden min-h-[200px]"
                 id="peta"
               >
                 <div className="grid grid-rows-3 flex-1">
-                  <div className="p-4 flex flex-col justify-center items-center gap-8">
-                    <ScrollAnimation
-                      animateIn="fadeInDown"
-                      animateOut="fadeOutUp"
-                      animatePreScroll={false}
-                    >
-                      <h3 className="f-sans text-lg md:text-xl lg:text-2xl text-center text-main-00">
-                        Rumah Kediaman Bapak Hidayat <br /> Dsn.Tegal kidul,
-                        Desa Jatiarjo Kec. Prigen
-                      </h3>
-                    </ScrollAnimation>
+                  <div className="p-4 flex flex-col justify-center items-center gap-4">
+                    <h3 className="f-sans text-lg md:text-xl lg:text-2xl text-center text-main-00">
+                      Rumah Kediaman Bapak Hidayat <br /> Dsn.Tegal kidul, Desa
+                      Jatiarjo Kec. Prigen
+                    </h3>
                     <a
                       href="https://maps.google.com/maps/dir//Kedai+gumandar+7M47%2BHQP+Tegal+Kidul,+Jatiarjo+Kec.+Prigen,+Pasuruan,+Jawa+Timur+67157/@-7.7435577,112.6644786,16z/data=!4m5!4m4!1m0!1m2!1m1!1s0x2dd7d7a48d97ad1d:0x51bff73388cd7ca1"
                       target="_blank"
                       rel="noreferrer"
-                      className="px-3 py-2 rounded-md f-sans text-main-500 bg-main-00 flex items-center gap-2 text-md flex items-center gap-1"
+                      className="px-4 py-2 rounded-md f-sans bg-main-500 hover:bg-main-400 text-main-00 flex items-center gap-2 text-md flex items-center gap-1"
                       onClick={onOpen}
                     >
-                      <MapDraw theme="filled" />
+                      <MapDraw />
                       Buka Peta
                     </a>
                   </div>
