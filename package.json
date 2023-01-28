@@ -9,7 +9,7 @@
     "lint": "next lint",
     "migrate": "prisma migrate dev --name init",
     "seed": "prisma db seed",
-    "refresh": "git pull && npx build && pm2 startOrRestart ecosystem.config.js"
+    "refresh": "git pull && yarn build && pm2 startOrRestart ecosystem.config.js"
   },
   "prisma": {
     "seed": "ts-node-esm prisma/seed.mts"
