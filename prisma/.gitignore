@@ -1,4 +1,4 @@
 *
 !.gitignore
 !schema.prisma
-!seed.ts
+!seed.mts
