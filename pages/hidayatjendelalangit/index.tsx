@@ -14,6 +14,7 @@ import Music, { MusicComp } from "@components/Music";
 import { GetServerSideProps } from "next";
 import { getTamuByUsername } from "@repo/tamu";
 import { Tamu } from "@prisma/client";
+import { useStaticBackground } from "@components/hooks";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const url = new URL(req.url || "", `https://${req.headers.host}`);
@@ -60,6 +61,7 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
     main.current?.classList.remove("closed");
     music.current?.play();
   };
+  const staticBackground = useStaticBackground();
 
   return (
     <>
@@ -81,7 +83,10 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
       <main ref={main} id="main" className="closed">
         <Cover onOpen={onOpen} tamu={tamu} />
         <div id="content">
-          <div className="bg-1 flex relative z-0">
+          <div
+            className="bg-1 flex relative z-0"
+            style={staticBackground["bg-1"]}
+          >
             <div className="flex-1 bg-black/60">
               <div className="pt-6 pb-12 relative z-0">
                 <div className="container mx-auto text-center text-white px-4 h-[85vh] md:h-[82vh] lg:h-[75vh] relative">
@@ -131,7 +136,7 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
                     animatePreScroll={false}
                   >
                     <Person
-                      image="/img/dita.jpg"
+                      image={require("@public/img/dita.jpg")}
                       name="DITA"
                       fullname="Dita Dwi Kurniawati"
                       description="Putri dari Bapak Hidayat dan Ibu Wati"
@@ -143,7 +148,7 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
                     animatePreScroll={false}
                   >
                     <Person
-                      image="/img/khoirul.jpg"
+                      image={require("@public/img/khoirul.jpg")}
                       name="KHOIRUL"
                       fullname="Khoirullah"
                       description="Putra dari Bapak Kasit dan Ibu Kastini"
@@ -185,7 +190,7 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
                   offset={-200}
                 >
                   <Image
-                    src="/img/frame-c1.png"
+                    src={require("@public/img/frame-c1.png")}
                     alt="frame"
                     className="absolute w-36 md:w-48 lg:w-64 -right-8 -top-10 z-0"
                     width={358}
@@ -199,7 +204,7 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
                   offset={-200}
                 >
                   <Image
-                    src="/img/frame-c1.png"
+                    src={require("@public/img/frame-c1.png")}
                     alt="frame"
                     className="absolute w-36 md:w-48 lg:w-64 left-0 -top-12 z-0 scale-x-[-1] scale-y-[-1] rotate-90"
                     width={358}
@@ -219,7 +224,7 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
                   </ScrollAnimation>
                   <ScrollAnimation animateIn="fadeIn" animatePreScroll={false}>
                     <Person
-                      image="/img/safian.jpg"
+                      image={require("@public/img/safian.jpg")}
                       name="SAFIAN"
                       fullname="Safian Cahya Pratama"
                       description="Putra dari Bapak Hidayat dan Ibu Wati"
@@ -233,7 +238,7 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
                   animatePreScroll={false}
                 >
                   <Image
-                    src="/img/frame-c2.png"
+                    src={require("@public/img/frame-c2.png")}
                     alt="frame"
                     className="absolute w-36 md:w-48 lg:w-64 -left-10 -bottom-8 z-0"
                     width={403}
@@ -247,7 +252,7 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
                   animatePreScroll={false}
                 >
                   <Image
-                    src="/img/frame-c2.png"
+                    src={require("@public/img/frame-c2.png")}
                     alt="frame"
                     className="absolute w-36 md:w-48 lg:w-64 right-0 -bottom-12 z-0 scale-x-[-1] scale-y-[-1] rotate-90"
                     width={403}
@@ -263,18 +268,6 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
                 id="peta"
               >
                 <div className="grid grid-rows-3 flex-1">
-                  <div className="row-span-2 min-h-[200px]">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.4357060652383!2d112.6622743150781!3d-7.7435230789123555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7d7a48d97ad1d%3A0x51bff73388cd7ca1!2sKedai%20gumandar!5e0!3m2!1sid!2sid!4v1673866131003!5m2!1sid!2sid"
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen={true}
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="flex-1"
-                    ></iframe>
-                  </div>
                   <div className="p-4 flex flex-col justify-center items-center gap-8">
                     <ScrollAnimation
                       animateIn="fadeInDown"
@@ -296,6 +289,18 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
                       <MapDraw theme="filled" />
                       Buka Peta
                     </a>
+                  </div>
+                  <div className="row-span-2 min-h-[200px]">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.4357060652383!2d112.6622743150781!3d-7.7435230789123555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7d7a48d97ad1d%3A0x51bff73388cd7ca1!2sKedai%20gumandar!5e0!3m2!1sid!2sid!4v1673866131003!5m2!1sid!2sid"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen={true}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="flex-1"
+                    ></iframe>
                   </div>
                 </div>
               </div>
@@ -336,7 +341,7 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
                 <Comment name={tamu.name} tamuid={tamu.id} />
               </div>
             </div>
-            <div className="bg-1 flex">
+            <div className="bg-1 flex" style={staticBackground["bg-1"]}>
               <div className="flex-1 bg-black/60 pt-24 pb-24">
                 <div className="container mx-auto text-center text-white p-8">
                   <p className="text-lg md:text-xl lg:text-2xl f-sans font-light mb-8">

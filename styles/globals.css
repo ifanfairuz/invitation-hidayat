@@ -52,19 +52,19 @@ main#main.closed > .cover {
   background-image: url("/img/border-100.png");
 }
 .framed {
-  background: url("/img/frame.png") no-repeat center center;
+  background: no-repeat center center;
   background-size: contain;
 }
 .frame-c1 {
-  background: url("/img/frame-c1.png") no-repeat center center;
+  background: no-repeat center center;
   background-size: contain;
 }
 .frame-c2 {
-  background: url("/img/frame-c2.png") no-repeat center center;
+  background: no-repeat center center;
   background-size: contain;
 }
 .bg-1 {
-  background: url("/img/bg-1.jpg") no-repeat bottom center fixed;
+  background: no-repeat bottom center fixed;
   background-size: cover;
 }
 

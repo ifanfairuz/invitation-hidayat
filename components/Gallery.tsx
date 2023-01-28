@@ -47,7 +47,7 @@ const GalleryItem: FC<GalleryItemProps> = ({ data, i, ...props }) => {
             style={{ objectFit: "cover" }}
             src={data.image || require(`../gallery/${data.src}`)}
             alt={"galeri-" + i}
-            loading="eager"
+            loading="lazy"
             placeholder="blur"
             sizes="lg"
           />
@@ -110,7 +110,7 @@ const Gallery: FC<GalleryProps> = ({ datas, ...props }) => {
                 <Image
                   fill
                   src={image as any}
-                  loading="eager"
+                  loading="lazy"
                   alt={image.alt || ""}
                   placeholder="blur"
                   sizes={

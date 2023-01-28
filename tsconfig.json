@@ -16,6 +16,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
+      "@public": ["./public"],
+      "@public/*": ["./public/*"],
       "@support": ["./support"],
       "@support/*": ["./support/*"],
       "@lib": ["./lib"],

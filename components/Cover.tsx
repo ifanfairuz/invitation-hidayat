@@ -2,16 +2,18 @@ import { Tamu } from "@prisma/client";
 import Image from "next/image";
 import { FC, MouseEventHandler } from "react";
 import ScrollAnimation from "react-animate-on-scroll";
+import { useStaticBackground } from "./hooks";
 
 export const Cover: FC<{
   onOpen: MouseEventHandler<HTMLButtonElement>;
   tamu: Tamu;
 }> = ({ onOpen, tamu }) => {
+  const staticBackground = useStaticBackground();
   return (
     <div className="cover w-full bg-main-50 z-50 overflow-hidden">
       <ScrollAnimation offset={0} animateIn="fadeIn">
         <Image
-          src="/img/frame-c1.png"
+          src={require("@public/img/frame-c1.png")}
           alt="frame"
           className="absolute w-44 md:w-64 lg:w-80 right-0 top-0 z-0"
           width={358}
@@ -20,7 +22,7 @@ export const Cover: FC<{
       </ScrollAnimation>
       <ScrollAnimation offset={0} animateIn="fadeIn">
         <Image
-          src="/img/frame-c2.png"
+          src={require("@public/img/frame-c2.png")}
           alt="frame"
           className="absolute w-44 md:w-64 lg:w-80 left-0 bottom-0 z-0"
           width={403}
@@ -29,7 +31,7 @@ export const Cover: FC<{
       </ScrollAnimation>
       <ScrollAnimation offset={0} animateIn="fadeIn">
         <Image
-          src="/img/frame-c1.png"
+          src={require("@public/img/frame-c1.png")}
           alt="frame"
           className="absolute w-36 md:w-56 lg:w-72 left-0 -top-12 z-0 scale-x-[-1] scale-y-[-1] rotate-90"
           width={358}
@@ -38,7 +40,7 @@ export const Cover: FC<{
       </ScrollAnimation>
       <ScrollAnimation offset={0} animateIn="fadeIn">
         <Image
-          src="/img/frame-c2.png"
+          src={require("@public/img/frame-c2.png")}
           alt="frame"
           className="absolute w-36 md:w-56 lg:w-72 right-0 -bottom-12 z-0 scale-x-[-1] scale-y-[-1] rotate-90"
           width={403}
@@ -56,7 +58,10 @@ export const Cover: FC<{
         </div>
         <div className="relative py-20 md:py-24 lg:py-32">
           <ScrollAnimation offset={0} animateIn="fadeIn">
-            <div className="framed absolute h-full w-full mx-auto top-0 z-0"></div>
+            <div
+              className="framed absolute h-full w-full mx-auto top-0 z-0"
+              style={staticBackground.framed}
+            ></div>
           </ScrollAnimation>
           <div className="flex flex-col gap-4 relative z-1 -mt-2">
             <div>
