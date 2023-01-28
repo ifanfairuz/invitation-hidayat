@@ -1,7 +1,7 @@
 import { Tamu } from "@prisma/client";
 import Image from "next/image";
 import { FC, MouseEventHandler } from "react";
-import ScrollAnimation from "react-animate-on-scroll";
+import ScrollAnimation from "@components/ScrollAnimation";
 import { useStaticBackground } from "./hooks";
 
 export const Cover: FC<{

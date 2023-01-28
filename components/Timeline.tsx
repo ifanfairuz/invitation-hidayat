@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes } from "react";
-import ScrollAnimation from "react-animate-on-scroll";
+import ScrollAnimation from "@components/ScrollAnimation";
 
 export interface TimelineData extends Record<string, any> {
   date: string;

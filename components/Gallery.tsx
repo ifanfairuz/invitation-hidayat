@@ -7,7 +7,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import ScrollAnimation from "react-animate-on-scroll";
+import ScrollAnimation from "@components/ScrollAnimation";
 import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";

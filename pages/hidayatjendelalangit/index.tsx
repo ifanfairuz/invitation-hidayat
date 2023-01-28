@@ -5,7 +5,7 @@ import Person from "@components/Person";
 import Counter from "@components/Counter";
 import Timeline from "@components/Timeline";
 import Gallery from "@components/Gallery";
-import ScrollAnimation from "react-animate-on-scroll";
+import ScrollAnimation from "@components/ScrollAnimation";
 import Image from "next/image";
 import { MapDraw } from "@icon-park/react";
 import Comment from "@components/Comment";
@@ -50,7 +50,7 @@ const gallery = [
   { src: "w-2.jpg", className: "col-span-3" },
 ];
 
-const MainContent: FC = () => {
+const MainContent: FC<{ animation?: boolean }> = ({ animation }) => {
   return (
     <div className="container mx-auto p-8">
       <div className="max-w-[900px] mx-auto flex flex-col gap-8 mb-8">
@@ -59,6 +59,7 @@ const MainContent: FC = () => {
             animateIn="fadeInLeft"
             animateOut="fadeOutLeft"
             animatePreScroll={false}
+            disable={!animation}
           >
             <Person
               image={require("@public/img/dita.jpg")}
@@ -71,6 +72,7 @@ const MainContent: FC = () => {
             animateIn="fadeInRight"
             animateOut="fadeOutRight"
             animatePreScroll={false}
+            disable={!animation}
           >
             <Person
               image={require("@public/img/khoirul.jpg")}
@@ -82,7 +84,11 @@ const MainContent: FC = () => {
         </div>
         <hr />
         <div>
-          <ScrollAnimation animateIn="fadeInDown" animatePreScroll={false}>
+          <ScrollAnimation
+            animateIn="fadeInDown"
+            animatePreScroll={false}
+            disable={!animation}
+          >
             <h2 className="f-serif text-main-400 text-center text-lg md:text-xl lg:text-2xl mb-2">
               RESEPSI
             </h2>
@@ -93,7 +99,11 @@ const MainContent: FC = () => {
               16:00 - 18:00
             </p>
           </ScrollAnimation>
-          <ScrollAnimation animateIn="fadeInUp" animatePreScroll={false}>
+          <ScrollAnimation
+            animateIn="fadeInUp"
+            animatePreScroll={false}
+            disable={!animation}
+          >
             <Counter />
           </ScrollAnimation>
         </div>
@@ -106,6 +116,7 @@ const MainContent: FC = () => {
           animateIn="fadeIn"
           animateOut="fadeOut"
           animatePreScroll={false}
+          disable={!animation}
           offset={-200}
         >
           <Image
@@ -120,6 +131,7 @@ const MainContent: FC = () => {
           animateIn="fadeIn"
           animateOut="fadeOut"
           animatePreScroll={false}
+          disable={!animation}
           offset={-200}
         >
           <Image
@@ -135,13 +147,18 @@ const MainContent: FC = () => {
             animateIn="fadeInDown"
             animateOut="fadeOutUp"
             animatePreScroll={false}
+            disable={!animation}
             offset={0}
           >
             <h2 className="f-over text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-8">
               KHITAN
             </h2>
           </ScrollAnimation>
-          <ScrollAnimation animateIn="fadeIn" animatePreScroll={false}>
+          <ScrollAnimation
+            animateIn="fadeIn"
+            animatePreScroll={false}
+            disable={!animation}
+          >
             <Person
               image={require("@public/img/safian.jpg")}
               name="SAFIAN"
@@ -155,6 +172,7 @@ const MainContent: FC = () => {
           animateIn="fadeIn"
           animateOut="fadeOut"
           animatePreScroll={false}
+          disable={!animation}
         >
           <Image
             src={require("@public/img/frame-c2.png")}
@@ -169,6 +187,7 @@ const MainContent: FC = () => {
           animateIn="fadeIn"
           animateOut="fadeOut"
           animatePreScroll={false}
+          disable={!animation}
         >
           <Image
             src={require("@public/img/frame-c2.png")}
