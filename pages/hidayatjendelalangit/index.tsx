@@ -73,9 +73,13 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
         />
         <style>
           {`
-          body #content { display: none; }
+          body #content {
+            height: 0;
+            overflow: hidden;
+          }
           body.open #content {
-            display: block;
+            height: auto;
+            overflow: auto;
           }
           `}
         </style>

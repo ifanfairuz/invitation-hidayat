@@ -24,6 +24,7 @@ const Person: FC<PersonProps> = (props) => {
             width={200}
             height={200}
             className="rounded-lg"
+            priority
           />
         </div>
       </div>
