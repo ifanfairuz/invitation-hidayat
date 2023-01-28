@@ -278,7 +278,7 @@ const Invitation: UnauthedPage<{ tamu: Tamu }> = ({ tamu }) => {
               >
                 <div className="grid grid-rows-3 flex-1">
                   <div className="p-4 flex flex-col justify-center items-center gap-4">
-                    <h3 className="f-sans text-lg md:text-xl lg:text-2xl text-center text-main-00">
+                    <h3 className="f-sans text-lg md:text-xl lg:text-2xl text-center text-main-800">
                       Rumah Kediaman Bapak Hidayat <br /> Dsn.Tegal kidul, Desa
                       Jatiarjo Kec. Prigen
                     </h3>
