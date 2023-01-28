@@ -374,8 +374,9 @@ const Invitation: UnauthedPage<{ tamu?: Tamu }> = ({ tamu }) => {
           name="description"
           content="Undangan Keluarga Bpk.Hidayat/Ibu.Wati"
         />
-        <style>
-          {`
+        {tamu && (
+          <style>
+            {`
           body #content {
             height: 0;
             overflow: hidden;
@@ -385,7 +386,8 @@ const Invitation: UnauthedPage<{ tamu?: Tamu }> = ({ tamu }) => {
             overflow: auto;
           }
           `}
-        </style>
+          </style>
+        )}
       </Head>
       {tamu ? <Main tamu={tamu} /> : <Uninvit />}
     </>
