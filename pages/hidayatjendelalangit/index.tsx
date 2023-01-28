@@ -50,6 +50,139 @@ const gallery = [
   { src: "w-2.jpg", className: "col-span-3" },
 ];
 
+const MainContent: FC = () => {
+  return (
+    <div className="container mx-auto p-8">
+      <div className="max-w-[900px] mx-auto flex flex-col gap-8 mb-8">
+        <div className="grid grid-cols-2">
+          <ScrollAnimation
+            animateIn="fadeInLeft"
+            animateOut="fadeOutLeft"
+            animatePreScroll={false}
+          >
+            <Person
+              image={require("@public/img/dita.jpg")}
+              name="DITA"
+              fullname="Dita Dwi Kurniawati"
+              description="Putri dari Bapak Hidayat dan Ibu Wati"
+            />
+          </ScrollAnimation>
+          <ScrollAnimation
+            animateIn="fadeInRight"
+            animateOut="fadeOutRight"
+            animatePreScroll={false}
+          >
+            <Person
+              image={require("@public/img/khoirul.jpg")}
+              name="KHOIRUL"
+              fullname="Khoirullah"
+              description="Putra dari Bapak Kasit dan Ibu Kastini"
+            />
+          </ScrollAnimation>
+        </div>
+        <hr />
+        <div>
+          <ScrollAnimation animateIn="fadeInDown" animatePreScroll={false}>
+            <h2 className="f-serif text-main-400 text-center text-lg md:text-xl lg:text-2xl mb-2">
+              RESEPSI
+            </h2>
+            <p className="f-cinzel text-main-800 text-center text-xl md:text-2xl lg:text-3xl font-bold mb-2">
+              06 Februari 2023
+            </p>
+            <p className="f-cinzel text-main-800 text-center text-lg md:text-xl lg:text-2xl mb-2">
+              16:00 - 18:00
+            </p>
+          </ScrollAnimation>
+          <ScrollAnimation animateIn="fadeInUp" animatePreScroll={false}>
+            <Counter />
+          </ScrollAnimation>
+        </div>
+      </div>
+      <div
+        className="container mx-auto p-8 bg-main-100 text-main-800 rounded-2xl shadow-lg relative overflow-hidden"
+        id="khitan"
+      >
+        <ScrollAnimation
+          animateIn="fadeIn"
+          animateOut="fadeOut"
+          animatePreScroll={false}
+          offset={-200}
+        >
+          <Image
+            src={require("@public/img/frame-c1.png")}
+            alt="frame"
+            className="absolute w-36 md:w-48 lg:w-64 -right-8 -top-10 z-0"
+            width={358}
+            height={467}
+          />
+        </ScrollAnimation>
+        <ScrollAnimation
+          animateIn="fadeIn"
+          animateOut="fadeOut"
+          animatePreScroll={false}
+          offset={-200}
+        >
+          <Image
+            src={require("@public/img/frame-c1.png")}
+            alt="frame"
+            className="absolute w-36 md:w-48 lg:w-64 left-0 -top-12 z-0 scale-x-[-1] scale-y-[-1] rotate-90"
+            width={358}
+            height={467}
+          />
+        </ScrollAnimation>
+        <div className="relative z-10">
+          <ScrollAnimation
+            animateIn="fadeInDown"
+            animateOut="fadeOutUp"
+            animatePreScroll={false}
+            offset={0}
+          >
+            <h2 className="f-over text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-8">
+              KHITAN
+            </h2>
+          </ScrollAnimation>
+          <ScrollAnimation animateIn="fadeIn" animatePreScroll={false}>
+            <Person
+              image={require("@public/img/safian.jpg")}
+              name="SAFIAN"
+              fullname="Safian Cahya Pratama"
+              description="Putra dari Bapak Hidayat dan Ibu Wati"
+              borderType="100"
+            />
+          </ScrollAnimation>
+        </div>
+        <ScrollAnimation
+          animateIn="fadeIn"
+          animateOut="fadeOut"
+          animatePreScroll={false}
+        >
+          <Image
+            src={require("@public/img/frame-c2.png")}
+            alt="frame"
+            className="absolute w-36 md:w-48 lg:w-64 -left-10 -bottom-8 z-0"
+            width={403}
+            height={491}
+          />
+        </ScrollAnimation>
+
+        <ScrollAnimation
+          animateIn="fadeIn"
+          animateOut="fadeOut"
+          animatePreScroll={false}
+        >
+          <Image
+            src={require("@public/img/frame-c2.png")}
+            alt="frame"
+            className="absolute w-36 md:w-48 lg:w-64 right-0 -bottom-12 z-0 scale-x-[-1] scale-y-[-1] rotate-90"
+            width={403}
+            height={491}
+          />
+        </ScrollAnimation>
+      </div>
+    </div>
+  );
+};
+
 const Main: FC<{ tamu: Tamu }> = ({ tamu }) => {
   const main = createRef<HTMLElement>();
   const music = createRef<MusicComp>();
@@ -108,137 +241,7 @@ const Main: FC<{ tamu: Tamu }> = ({ tamu }) => {
           className="min-h-screen bg-main-00 relative z-1 overflow-x-hidden -mt-[1px]"
           id="pengantin"
         >
-          <div className="container mx-auto p-8">
-            <div className="max-w-[900px] mx-auto flex flex-col gap-8 mb-8">
-              <div className="grid grid-cols-2">
-                <ScrollAnimation
-                  animateIn="fadeInLeft"
-                  animateOut="fadeOutLeft"
-                  animatePreScroll={false}
-                >
-                  <Person
-                    image={require("@public/img/dita.jpg")}
-                    name="DITA"
-                    fullname="Dita Dwi Kurniawati"
-                    description="Putri dari Bapak Hidayat dan Ibu Wati"
-                  />
-                </ScrollAnimation>
-                <ScrollAnimation
-                  animateIn="fadeInRight"
-                  animateOut="fadeOutRight"
-                  animatePreScroll={false}
-                >
-                  <Person
-                    image={require("@public/img/khoirul.jpg")}
-                    name="KHOIRUL"
-                    fullname="Khoirullah"
-                    description="Putra dari Bapak Kasit dan Ibu Kastini"
-                  />
-                </ScrollAnimation>
-              </div>
-              <hr />
-              <div>
-                <ScrollAnimation
-                  animateIn="fadeInDown"
-                  animatePreScroll={false}
-                >
-                  <h2 className="f-serif text-main-400 text-center text-lg md:text-xl lg:text-2xl mb-2">
-                    RESEPSI
-                  </h2>
-                  <p className="f-cinzel text-main-800 text-center text-xl md:text-2xl lg:text-3xl font-bold mb-2">
-                    06 Februari 2023
-                  </p>
-                  <p className="f-cinzel text-main-800 text-center text-lg md:text-xl lg:text-2xl mb-2">
-                    16:00 - 18:00
-                  </p>
-                </ScrollAnimation>
-                <ScrollAnimation animateIn="fadeInUp" animatePreScroll={false}>
-                  <Counter />
-                </ScrollAnimation>
-              </div>
-            </div>
-            <div
-              className="container mx-auto p-8 bg-main-100 text-main-800 rounded-2xl shadow-lg relative overflow-hidden"
-              id="khitan"
-            >
-              <ScrollAnimation
-                animateIn="fadeIn"
-                animateOut="fadeOut"
-                animatePreScroll={false}
-                offset={-200}
-              >
-                <Image
-                  src={require("@public/img/frame-c1.png")}
-                  alt="frame"
-                  className="absolute w-36 md:w-48 lg:w-64 -right-8 -top-10 z-0"
-                  width={358}
-                  height={467}
-                />
-              </ScrollAnimation>
-              <ScrollAnimation
-                animateIn="fadeIn"
-                animateOut="fadeOut"
-                animatePreScroll={false}
-                offset={-200}
-              >
-                <Image
-                  src={require("@public/img/frame-c1.png")}
-                  alt="frame"
-                  className="absolute w-36 md:w-48 lg:w-64 left-0 -top-12 z-0 scale-x-[-1] scale-y-[-1] rotate-90"
-                  width={358}
-                  height={467}
-                />
-              </ScrollAnimation>
-              <div className="relative z-10">
-                <ScrollAnimation
-                  animateIn="fadeInDown"
-                  animateOut="fadeOutUp"
-                  animatePreScroll={false}
-                  offset={0}
-                >
-                  <h2 className="f-over text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-8">
-                    KHITAN
-                  </h2>
-                </ScrollAnimation>
-                <ScrollAnimation animateIn="fadeIn" animatePreScroll={false}>
-                  <Person
-                    image={require("@public/img/safian.jpg")}
-                    name="SAFIAN"
-                    fullname="Safian Cahya Pratama"
-                    description="Putra dari Bapak Hidayat dan Ibu Wati"
-                    borderType="100"
-                  />
-                </ScrollAnimation>
-              </div>
-              <ScrollAnimation
-                animateIn="fadeIn"
-                animateOut="fadeOut"
-                animatePreScroll={false}
-              >
-                <Image
-                  src={require("@public/img/frame-c2.png")}
-                  alt="frame"
-                  className="absolute w-36 md:w-48 lg:w-64 -left-10 -bottom-8 z-0"
-                  width={403}
-                  height={491}
-                />
-              </ScrollAnimation>
-
-              <ScrollAnimation
-                animateIn="fadeIn"
-                animateOut="fadeOut"
-                animatePreScroll={false}
-              >
-                <Image
-                  src={require("@public/img/frame-c2.png")}
-                  alt="frame"
-                  className="absolute w-36 md:w-48 lg:w-64 right-0 -bottom-12 z-0 scale-x-[-1] scale-y-[-1] rotate-90"
-                  width={403}
-                  height={491}
-                />
-              </ScrollAnimation>
-            </div>
-          </div>
+          <MainContent />
           <div className="container mx-auto p-8 bg-main-00 flex flex-col lg:flex-row gap-16 lg:gap-8">
             <Timeline datas={timeline} className="lg:w-5/12" id="acara" />
             <div
@@ -351,137 +354,7 @@ const Uninvit: FC = () => {
           className="min-h-screen bg-main-00 relative z-1 overflow-x-hidden"
           id="pengantin"
         >
-          <div className="container mx-auto p-8">
-            <div className="max-w-[900px] mx-auto flex flex-col gap-8 mb-8">
-              <div className="grid grid-cols-2">
-                <ScrollAnimation
-                  animateIn="fadeInLeft"
-                  animateOut="fadeOutLeft"
-                  animatePreScroll={false}
-                >
-                  <Person
-                    image={require("@public/img/dita.jpg")}
-                    name="DITA"
-                    fullname="Dita Dwi Kurniawati"
-                    description="Putri dari Bapak Hidayat dan Ibu Wati"
-                  />
-                </ScrollAnimation>
-                <ScrollAnimation
-                  animateIn="fadeInRight"
-                  animateOut="fadeOutRight"
-                  animatePreScroll={false}
-                >
-                  <Person
-                    image={require("@public/img/khoirul.jpg")}
-                    name="KHOIRUL"
-                    fullname="Khoirullah"
-                    description="Putra dari Bapak Kasit dan Ibu Kastini"
-                  />
-                </ScrollAnimation>
-              </div>
-              <hr />
-              <div>
-                <ScrollAnimation
-                  animateIn="fadeInDown"
-                  animatePreScroll={false}
-                >
-                  <h2 className="f-serif text-main-400 text-center text-lg md:text-xl lg:text-2xl mb-2">
-                    RESEPSI
-                  </h2>
-                  <p className="f-cinzel text-main-800 text-center text-xl md:text-2xl lg:text-3xl font-bold mb-2">
-                    06 Februari 2023
-                  </p>
-                  <p className="f-cinzel text-main-800 text-center text-lg md:text-xl lg:text-2xl mb-2">
-                    16:00 - 18:00
-                  </p>
-                </ScrollAnimation>
-                <ScrollAnimation animateIn="fadeInUp" animatePreScroll={false}>
-                  <Counter />
-                </ScrollAnimation>
-              </div>
-            </div>
-            <div
-              className="container mx-auto p-8 bg-main-100 text-main-800 rounded-2xl shadow-lg relative overflow-hidden"
-              id="khitan"
-            >
-              <ScrollAnimation
-                animateIn="fadeIn"
-                animateOut="fadeOut"
-                animatePreScroll={false}
-                offset={-200}
-              >
-                <Image
-                  src={require("@public/img/frame-c1.png")}
-                  alt="frame"
-                  className="absolute w-36 md:w-48 lg:w-64 -right-8 -top-10 z-0"
-                  width={358}
-                  height={467}
-                />
-              </ScrollAnimation>
-              <ScrollAnimation
-                animateIn="fadeIn"
-                animateOut="fadeOut"
-                animatePreScroll={false}
-                offset={-200}
-              >
-                <Image
-                  src={require("@public/img/frame-c1.png")}
-                  alt="frame"
-                  className="absolute w-36 md:w-48 lg:w-64 left-0 -top-12 z-0 scale-x-[-1] scale-y-[-1] rotate-90"
-                  width={358}
-                  height={467}
-                />
-              </ScrollAnimation>
-              <div className="relative z-10">
-                <ScrollAnimation
-                  animateIn="fadeInDown"
-                  animateOut="fadeOutUp"
-                  animatePreScroll={false}
-                  offset={0}
-                >
-                  <h2 className="f-over text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-8">
-                    KHITAN
-                  </h2>
-                </ScrollAnimation>
-                <ScrollAnimation animateIn="fadeIn" animatePreScroll={false}>
-                  <Person
-                    image={require("@public/img/safian.jpg")}
-                    name="SAFIAN"
-                    fullname="Safian Cahya Pratama"
-                    description="Putra dari Bapak Hidayat dan Ibu Wati"
-                    borderType="100"
-                  />
-                </ScrollAnimation>
-              </div>
-              <ScrollAnimation
-                animateIn="fadeIn"
-                animateOut="fadeOut"
-                animatePreScroll={false}
-              >
-                <Image
-                  src={require("@public/img/frame-c2.png")}
-                  alt="frame"
-                  className="absolute w-36 md:w-48 lg:w-64 -left-10 -bottom-8 z-0"
-                  width={403}
-                  height={491}
-                />
-              </ScrollAnimation>
-
-              <ScrollAnimation
-                animateIn="fadeIn"
-                animateOut="fadeOut"
-                animatePreScroll={false}
-              >
-                <Image
-                  src={require("@public/img/frame-c2.png")}
-                  alt="frame"
-                  className="absolute w-36 md:w-48 lg:w-64 right-0 -bottom-12 z-0 scale-x-[-1] scale-y-[-1] rotate-90"
-                  width={403}
-                  height={491}
-                />
-              </ScrollAnimation>
-            </div>
-          </div>
+          <MainContent />
         </div>
       </div>
     </main>
