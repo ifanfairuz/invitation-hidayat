@@ -88,7 +88,7 @@ export const Cover: FC<{
         <div className="flex flex-col items-center py-4 text-main-900 -mt-5">
           <div className="mb-4 text-center f-sans text-sm md:text-md lg:text-lg px-4 py-2 rounded-lg">
             <p className="border-b border-black px-2">
-              Kepada Yth. Bapak/Ibu :
+              Kepada Yth. Bapak/Ibu/Saudara/i :
             </p>
             <div className="min-h-[50px] min-w-[200px] max-w-[300px] font-bold flex items-center px-2">
               <p className="text-center flex-1">{tamu.name}</p>
