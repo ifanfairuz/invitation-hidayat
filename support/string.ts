@@ -46,8 +46,8 @@ Bersama dengan undangan ini, saya turut mengundang Bapak/Ibu untuk hadir di acar
 
 ${link}
 
-Demikian undangan dari kami, yang sedang berbahagia. Merupakan suatu kehormatan dan kebahagiaan bagi kami,
-apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu.
+Demikian undangan dari kami, yang sedang berbahagia.
+Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu.
 
 Wassalamualaikum warahmatullahi wabarakatuh.`;
 
