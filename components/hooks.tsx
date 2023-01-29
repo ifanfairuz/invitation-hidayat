@@ -19,7 +19,7 @@ export const useLazyBg = <T extends Record<string, string>>(bgs: T) => {
           [i]: { backgroundImage: `url(${bgs[i]})` },
         }));
     }
-  });
+  }, []);
 
   return loaded;
 };

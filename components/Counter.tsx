@@ -11,14 +11,17 @@ const Counter: FC = () => {
 
   useEffect(() => {
     let interval = setInterval(() => {
-      setD(() => {
-        const { seconds, minutes, hours, days } = date.diffNow();
-        return { seconds, minutes, hours, days };
-      });
+      const { seconds, minutes, hours, days } = date.diffNow(
+        ["seconds", "minutes", "hours", "days"],
+        { conversionAccuracy: "longterm" }
+      );
+      setD({ seconds: parseInt(seconds.toString()), minutes, hours, days });
+      if (seconds == 0 && minutes == 0 && hours == 0 && days == 0)
+        clearInterval(interval);
     }, 1000);
 
     return () => clearInterval(interval);
-  });
+  }, []);
 
   return (
     <div className="flex items-center justify-around f-sans mt-8 mb-4">
