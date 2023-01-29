@@ -59,7 +59,7 @@ const Music: ForwardRefExoticComponent<RefAttributes<MusicComp>> =
             )}
           </button>
         </div>
-        <audio ref={music} loop preload="auto" src="/music.ogg"></audio>
+        <audio ref={music} loop preload="auto" src="/music.m4a"></audio>
       </div>
     );
   });

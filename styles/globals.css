@@ -28,7 +28,7 @@ main#main.closed {
 }
 main#main > .cover {
   position: absolute;
-  margin-top: -100vh;
+  margin-top: -120vh;
   @apply transition-all duration-500 ease-out;
 }
 main#main.closed > .cover {

@@ -293,7 +293,7 @@ const Main: FC<{ tamu: Tamu }> = ({ tamu }) => {
                     allowFullScreen={true}
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    className="flex-1"
+                    className="flex-1 rounded-b-xl"
                   ></iframe>
                 </div>
               </div>
@@ -342,7 +342,7 @@ const Main: FC<{ tamu: Tamu }> = ({ tamu }) => {
                   Merupakan suatu kehormatan dan kebahagiaan bagi kami,
                   <br />
                   {
-                    "apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikando'a restu."
+                    "apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu."
                   }
                 </p>
                 <h1 className="text-lg md:text-xl lg:text-2xl f-cinzel mb-2 font-bold">
@@ -362,9 +362,9 @@ const Main: FC<{ tamu: Tamu }> = ({ tamu }) => {
             </div>
           </div>
         </div>
-        <Music ref={music} />
         <Navigation />
       </div>
+      <Music ref={music} />
     </main>
   );
 };
