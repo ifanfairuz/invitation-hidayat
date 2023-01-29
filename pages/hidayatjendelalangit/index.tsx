@@ -348,8 +348,11 @@ const Main: FC<{ tamu: Tamu }> = ({ tamu }) => {
                 <h1 className="text-lg md:text-xl lg:text-2xl f-cinzel mb-2 font-bold">
                   Terima Kasih
                 </h1>
-                <p className="text-md md:text-lg lg:text-xl f-sans font-light mb-8">
+                <p className="text-md md:text-lg lg:text-xl f-sans font-light">
                   Keluarga Besar <br /> Bpk Hidayat & Ibu Wati
+                </p>
+                <p className="text-lg md:text-xl lg:text-2xl f-sans font-light mb-8">
+                  -- Jendela Langit --
                 </p>
 
                 <h1 className="text-lg md:text-xl lg:text-2xl f-over mb-8">

@@ -1,5 +1,5 @@
 import { Tamu } from "@prisma/client";
-import { getConection } from "./connection";
+import { closeConnection, getConection } from "./connection";
 import { translatePhone } from "@support/string";
 
 export const nameToUsername: (text: string) => Promise<string> = (text) => {
@@ -16,22 +16,27 @@ export const nameToUsername: (text: string) => Promise<string> = (text) => {
   );
 };
 
-export const getAllTamu = () => getConection().tamu.findMany();
+export const getAllTamu = () =>
+  getConection().tamu.findMany().finally(closeConnection);
 
 export const getTamu = (id: number) =>
-  getConection().tamu.findFirst({ where: { id } });
+  getConection().tamu.findFirst({ where: { id } }).finally(closeConnection);
 export const getTamuByUsername = (username: string) =>
-  getConection().tamu.findFirst({ where: { username } });
+  getConection()
+    .tamu.findFirst({ where: { username } })
+    .finally(closeConnection);
 
 export const createTamu = async (data: InsertAI<Tamu, "id" | "username">) => {
   return nameToUsername(data.name).then((username) => {
-    return getConection().tamu.create({
-      data: {
-        ...data,
-        wa: translatePhone(data.wa),
-        username,
-      },
-    });
+    return getConection()
+      .tamu.create({
+        data: {
+          ...data,
+          wa: translatePhone(data.wa),
+          username,
+        },
+      })
+      .finally(closeConnection);
   });
 };
 
@@ -41,8 +46,10 @@ export const updateTamu = (
 ) => {
   let data = update;
   if (data.wa) data.wa = translatePhone(data.wa);
-  return getConection().tamu.update({ data, where: { id } });
+  return getConection()
+    .tamu.update({ data, where: { id } })
+    .finally(closeConnection);
 };
 
 export const deleteTamu = (id: number) =>
-  getConection().tamu.delete({ where: { id } });
+  getConection().tamu.delete({ where: { id } }).finally(closeConnection);

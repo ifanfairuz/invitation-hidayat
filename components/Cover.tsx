@@ -11,7 +11,7 @@ export const Cover: FC<{
   const staticBackground = useStaticBackground();
   return (
     <div className="cover w-full bg-main-50 z-50 overflow-hidden">
-      <ScrollAnimation offset={0} animateIn="fadeIn">
+      <ScrollAnimation animateOnce={true} offset={0} animateIn="fadeIn">
         <Image
           src={require("@public/img/frame-c1.png")}
           alt="frame"
@@ -20,7 +20,7 @@ export const Cover: FC<{
           height={467}
         />
       </ScrollAnimation>
-      <ScrollAnimation offset={0} animateIn="fadeIn">
+      <ScrollAnimation animateOnce={true} offset={0} animateIn="fadeIn">
         <Image
           src={require("@public/img/frame-c2.png")}
           alt="frame"
@@ -29,7 +29,7 @@ export const Cover: FC<{
           height={491}
         />
       </ScrollAnimation>
-      <ScrollAnimation offset={0} animateIn="fadeIn">
+      <ScrollAnimation animateOnce={true} offset={0} animateIn="fadeIn">
         <Image
           src={require("@public/img/frame-c1.png")}
           alt="frame"
@@ -38,7 +38,7 @@ export const Cover: FC<{
           height={467}
         />
       </ScrollAnimation>
-      <ScrollAnimation offset={0} animateIn="fadeIn">
+      <ScrollAnimation animateOnce={true} offset={0} animateIn="fadeIn">
         <Image
           src={require("@public/img/frame-c2.png")}
           alt="frame"
@@ -55,9 +55,12 @@ export const Cover: FC<{
           <p className="f-serif text-md md:text-lg lg:text-xl text-center italic">
             Keluarga Bpk.Hidayat/Ibu.Wati
           </p>
+          <p className="f-serif text-lg md:text-xl lg:text-2xl text-center italic">
+            -- Jendela Langit --
+          </p>
         </div>
         <div className="relative py-20 md:py-24 lg:py-32">
-          <ScrollAnimation offset={0} animateIn="fadeIn">
+          <ScrollAnimation animateOnce={true} offset={0} animateIn="fadeIn">
             <div
               className="framed absolute h-full w-full mx-auto top-0 z-0"
               style={staticBackground.framed}
