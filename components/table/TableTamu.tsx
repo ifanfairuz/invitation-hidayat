@@ -17,10 +17,10 @@ import {
 
 interface ActionProps extends CellRenderProps<Tamu> {
   afterDelete?: () => void;
+  host: string;
 }
 const Action: FC<ActionProps> = memo(
-  ({ row, afterDelete }) => {
-    const [host, setHost] = useState("");
+  ({ row, afterDelete, host }) => {
     const onDelete = () => {
       confirmation({
         title: "Hapus Tamu",
@@ -45,10 +45,6 @@ const Action: FC<ActionProps> = memo(
             .catch(() => Promise.reject("Gagal hapus tamu.")),
       });
     };
-
-    useEffect(() => {
-      setHost(`${window.location.protocol}//${window.location.host}`);
-    }, []);
 
     return (
       <div className="inline-flex">
@@ -92,6 +88,7 @@ const Action: FC<ActionProps> = memo(
     );
   },
   (p, n) =>
+    p.host === n.host &&
     p.row.original.id === n.row.original.id &&
     p.row.original.wa === n.row.original.wa &&
     p.row.original.username === n.row.original.username
@@ -152,6 +149,8 @@ ActionSent.displayName = "ActionSent";
 type TableTamuProps<T extends object = Tamu> = Omit<TableOptions<T>, "columns">;
 const TableTamu: FC<TableTamuProps> = (props: TableTamuProps<any>) => {
   const [datas, setDatas] = useState<Tamu[]>(props.data as any);
+  const [host, setHost] = useState("");
+
   const deleteRow = (id: number) => {
     setDatas((s) => s.filter((d) => d.id !== id));
   };
@@ -167,6 +166,10 @@ const TableTamu: FC<TableTamuProps> = (props: TableTamuProps<any>) => {
       return n;
     });
   };
+
+  useEffect(() => {
+    setHost(`${window.location.protocol}//${window.location.host}`);
+  }, []);
 
   const columns: TableColumns<Tamu> = [
     {
@@ -199,6 +202,7 @@ const TableTamu: FC<TableTamuProps> = (props: TableTamuProps<any>) => {
       Cell: (props) => (
         <Action
           {...props}
+          host={host}
           afterDelete={() => deleteRow(props.row.original.id)}
         />
       ),
