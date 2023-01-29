@@ -54,7 +54,7 @@ Wassalamualaikum warahmatullahi wabarakatuh.`;
 export const genLinkInvitation = (username: string, host: string = "") =>
   `${host}/hidayatjendelalangit?name=${username}`;
 
-export const genLinkWA = (wa: string, username: string) =>
+export const genLinkWA = (wa: string, username: string, host: string) =>
   `https://wa.me/${wa}?text=${encodeURI(
     templateWA(genLinkInvitation(username, process.env.APP_URL))
   )}`;

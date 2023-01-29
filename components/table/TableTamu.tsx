@@ -1,7 +1,7 @@
 import { TableOptions } from "react-table";
 import { Tamu } from "@prisma/client";
 import Table, { CellRenderProps, TableColumns } from "./Table";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import Link from "next/link";
 import { memo } from "react";
 import { confirmation } from "@components/Confirmation";
@@ -20,6 +20,7 @@ interface ActionProps extends CellRenderProps<Tamu> {
 }
 const Action: FC<ActionProps> = memo(
   ({ row, afterDelete }) => {
+    const [host, setHost] = useState("");
     const onDelete = () => {
       confirmation({
         title: "Hapus Tamu",
@@ -45,10 +46,14 @@ const Action: FC<ActionProps> = memo(
       });
     };
 
+    useEffect(() => {
+      setHost(`${window.location.protocol}//${window.location.host}`);
+    }, []);
+
     return (
       <div className="inline-flex">
         <Link
-          href={genLinkWA(row.original.wa, row.original.username)}
+          href={genLinkWA(row.original.wa, row.original.username, host)}
           target="_blank"
         >
           <button className="p-2 bg-gray-200 hover:bg-gray-300 text-green-500 rounded-none rounded-l-lg">
