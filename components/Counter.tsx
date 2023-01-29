@@ -1,40 +1,30 @@
 import { FC, useEffect, useMemo, useState } from "react";
+import { DateTime } from "luxon";
 
 const Counter: FC = () => {
-  const [d, setD] = useState(0);
-  const pad = (val: number) => {
-    var s = val + "";
-    return s.length < 2 ? "0" + s : s;
-  };
-
-  const display = useMemo(() => {
-    const seconds = d;
-    const minutes = seconds / 60;
-    const hours = minutes / 60;
-    const day = hours / 24;
-    return {
-      seconds: Math.floor(seconds % 60),
-      minutes: Math.floor(minutes % 60),
-      hours: Math.floor(hours % 24),
-      day: Math.floor(day),
-    };
-  }, [d]);
+  const date = DateTime.fromFormat(
+    "2023-02-06 16:00:00",
+    "yyyy-MM-dd HH:mm:ss"
+  );
+  const pad = (val: number) => val.toString().padStart(2, "0");
+  const [d, setD] = useState({ seconds: 0, minutes: 0, hours: 0, days: 0 });
 
   useEffect(() => {
-    const date = new Date(Date.parse("2023-02-06 16:00:00"));
-    setD(Math.round((date.getTime() - Date.now()) / 1000));
     let interval = setInterval(() => {
-      setD((a) => a - 1);
+      setD(() => {
+        const { seconds, minutes, hours, days } = date.diffNow();
+        return { seconds, minutes, hours, days };
+      });
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  });
 
   return (
     <div className="flex items-center justify-around f-sans mt-8 mb-4">
       <div className="flex-1 text-center">
         <h1 className="text-2xl md:text-3xl lg:text-4xl text-main-800 font-medium">
-          {pad(display.day)}
+          {pad(d.days)}
         </h1>
         <p className="f-serif text-md md:text-lg lg:text-xl text-main-700">
           hari
@@ -42,7 +32,7 @@ const Counter: FC = () => {
       </div>
       <div className="flex-1 text-center">
         <h1 className="text-2xl md:text-3xl lg:text-4xl text-main-800 font-medium">
-          {pad(display.hours)}
+          {pad(d.hours)}
         </h1>
         <p className="f-serif text-md md:text-lg lg:text-xl text-main-700">
           jam
@@ -50,7 +40,7 @@ const Counter: FC = () => {
       </div>
       <div className="flex-1 text-center">
         <h1 className="text-2xl md:text-3xl lg:text-4xl text-main-800 font-medium">
-          {pad(display.minutes)}
+          {pad(d.minutes)}
         </h1>
         <p className="f-serif text-md md:text-lg lg:text-xl text-main-700">
           menit
@@ -58,7 +48,7 @@ const Counter: FC = () => {
       </div>
       <div className="flex-1 text-center">
         <h1 className="text-2xl md:text-3xl lg:text-4xl text-main-800 font-medium">
-          {pad(display.seconds)}
+          {pad(d.seconds)}
         </h1>
         <p className="f-serif text-md md:text-lg lg:text-xl text-main-700">
           detik
