@@ -162,7 +162,11 @@ const PaginationTable: FC<PaginationProps> = memo(
   (prev, next) =>
     prev.pageCount === next.pageCount &&
     prev.pageIndex === next.pageIndex &&
-    prev.pageSize === next.pageSize
+    prev.pageSize === next.pageSize &&
+    prev.setPageSize === next.setPageSize &&
+    prev.gotoPage === next.gotoPage &&
+    prev.previousPage === next.previousPage &&
+    prev.nextPage === next.nextPage
 );
 PaginationTable.displayName = "PaginationTable";
 
