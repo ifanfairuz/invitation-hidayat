@@ -1,3 +1,4 @@
+import { getUserDefaultInvitation } from "@repo/invitations";
 import { findUserByUsername, validatePassword } from "@repo/user";
 import { Passport } from "passport";
 import { Strategy } from "passport-local";
@@ -14,10 +15,7 @@ const getUserSession = (username: string, password?: string) => {
     })
     .then(async (user) => {
       if (user) {
-        const invitation = await res
-          .invitations()
-          .then((invitations) => invitations?.[0] || null)
-          .catch(() => null);
+        const invitation = (await getUserDefaultInvitation(user.id)) || null;
         return { ...user, invitation } as UserSession;
       }
       return Promise.reject("Unauthorized.");
